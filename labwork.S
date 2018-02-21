@@ -14,7 +14,6 @@
 .global hexasc
 .global printDing
 .global finalend
-.global enable_interrupt
 .data
 .text
 
@@ -234,8 +233,3 @@ finalend:
 
 	jr $ra
 	nop
-
-enable_interrupt:
-        ei
-        jr    $ra
-        nop
