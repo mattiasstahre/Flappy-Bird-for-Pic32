@@ -130,44 +130,138 @@ void markPixel (int x, int y){
 
 	if(y<8){ // Page 0
 			if(y==0){
-				int write = 0;
+				int write = ~0;
+				icon[x] = write;
 			}
 
 			if(y==1){
-				int write = 1;
+				int write = ~1;
+				icon[x] = write;
 			}
 
 			if(y==2){
-				int write = 2;
+				int write = ~2;
+				icon[x] = write;
 			}
 
 			if(y==3){
-				int write = 4;
+				int write = ~4;
+				icon[x] = write;
 			}
 
 			if(y==4){
-				int write = 8;
+				int write = ~8;
+				icon[x] = write;
 			}
 
 			if(y==5){
-				int write = 16;
+				int write = ~16;
+				icon[x] = write;
 			}
 
 			if(y==6){
-				int write = 32;
+				int write = ~32;
+				icon[x] = write;
 			}
 
 			if(y==7){
-				int write = 64;
+				int write = ~64;
+				icon[x] = write;
+
 			}
 
-
-	}
-
-	if(y>8 & y<16){ // Page 0
+		}
 
 
-	}
+	 if(y>= 8 && y<16){ // Page 1
+			y = y - 8;
+
+			if(y==0){
+				int write = ~1;
+				icon[128+x] = write;
+			}
+
+			if(y==1){
+				int write = ~2;
+				icon[128+x] = write;
+			}
+
+			if(y==2){
+				int write = ~4;
+				icon[128+x] = write;
+			}
+
+			if(y==3){
+				int write = ~8;
+				icon[128+x] = write;
+			}
+
+			if(y==4){
+				int write = ~16;
+				icon[128+x] = write;
+			}
+
+			if(y==5){
+				int write = ~32;
+				icon[128+x] = write;
+			}
+
+			if(y==6){
+				int write = ~64;
+				icon[128+x] = write;
+			}
+
+			if(y==7){
+				int write = ~128;
+				icon[128+x] = write;
+			}
+			
+		}
+/*
+		 if(y>= 16 && y<24){ // Page 2
+				y = y - 16;
+
+				if(y==0){
+					int write = ~0;
+					icon[256+x] = write;
+				}
+
+				if(y==1){
+					int write = ~1;
+					icon[256+x] = write;
+				}
+
+				if(y==2){
+					int write = ~2;
+					icon[256+x] = write;
+				}
+
+				if(y==3){
+					int write = ~4;
+					icon[256+x] = write;
+				}
+
+				if(y==4){
+					int write = ~8;
+					icon[256+x] = write;
+				}
+
+				if(y==5){
+					int write = ~16;
+					icon[256+x] = write;
+				}
+
+				if(y==6){
+					int write = ~32;
+					icon[256+x] = write;
+				}
+
+				if(y==7){
+					int write = ~64;
+					icon[256+x] = write;
+				}
+			}
+*/
 
 
 }

@@ -65,7 +65,11 @@ int main(void) {
 
 	display_update();
 
+int i;
+for(i = 0; i < 14; i++){
 
+		markPixel(i, i );    // Tar emot X, Y
+}
 
 	display_image(0, icon);
 
