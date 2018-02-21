@@ -85,13 +85,14 @@ void labwork( void )
 
 
 
-  display_string( 3, textstring );
-  display_update();
+  //display_string( 3, textstring );
+  //display_update();
   tick( &mytime );
 
   // +1 varje gång labwork anropas.
   *initPORTE += 1;
-  display_image(96, icon);
+
+  //display_image(0, icon);
 
 
 
