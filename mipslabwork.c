@@ -16,15 +16,15 @@
 
 int mytime = 0x5957;
 
-int x1 = 10;
-int y1 = 10;
+int TacoX = 10;
+int TacoY = 10;
 
-int x2 = 120;
-int y2 = 10;
+int Tube1X = 120;
+int Tube1Y = 10;
 
 
-int x3 = 160;
-int y3 = 0;
+int Tube2X = 160;
+int Tube2Y = 0;
 
 
 char textstring[] = "text, more text, and even more text!";
@@ -82,32 +82,32 @@ void labwork( void )
 
   for(i = 0; i < 4; i++){
   	for(j = 0; j < 4; j++){
-  		markPixel(x1+i, j+y1);    // Tar emot X, Y
+  		markPixel(TacoX+i, j+TacoY);    // Tar emot X, Y
   	}
   }
 
   for(i = 0; i < 5; i++){
   	for(j = 0; j < 18 ; j++){
-  		markPixel(x2+i, j+y2);    // Tar emot X, Y
+  		markPixel(Tube1X+i, j+Tube1Y);    // Tar emot X, Y
   	}
   }
 
   for(i = 0; i < 5; i++){
   	for(j = 0; j < 10 ; j++){
-  		markPixel(x3+i, j+y3);    // Tar emot X, Y
+  		markPixel(Tube2X+i, j+Tube2Y);    // Tar emot X, Y
   	}
   }
 
   display_image(0, icon);
 
-  x1 = x1 + 1;
-  y1 = y1 ;
+  TacoX = TacoX + 1;
+  TacoY = TacoY ;
 
-  x2 = x2 - 1 ;
-  y2 = y2 ;
+  Tube1X = Tube1X - 1 ;
+  Tube1Y = Tube1Y ;
 
-  x3 = x3 - 1 ;
-  y3 = y3 ;
+  Tube2X = Tube2X - 1 ;
+  Tube2Y = Tube2Y ;
 
 
 
