@@ -13,18 +13,32 @@
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "mipslab.h"  /* Declatations for these labs */
+#include <math.h>
+#include <stdio.h>
+
+#define PI 3.14159265
 
 int mytime = 0x5957;
 
-int x1 = 10;
-int y1 = 10;
+int AccTaco = 2;
 
-int x2 = 120;
-int y2 = 10;
+int SinTacoX = 0;
+int SinTacoY = 32;
 
+int TacoX = 15;
+int TacoY = 15;
 
-int x3 = 160;
-int y3 = 0;
+int Tube1X = 120;
+int Tube1Y = 10;
+
+int BottomLineX = 0;
+int BottomLineY = 30;
+
+int TopLineX = 0;
+int TopLineY = 0;      //Försvinner vid 32
+
+int Tube2X = 160;
+int Tube2Y = 0;
 
 
 char textstring[] = "text, more text, and even more text!";
@@ -80,34 +94,88 @@ void labwork( void )
 
   clearScreenMemory();
 
+
+
+  for(i = 0; i < 128; i++){
+    for(j = 0; j < 2; j++){
+      markPixel(TopLineX+i, j+TopLineY);    // Tar emot X, Y
+    }
+  }
+
+
+  for(i = 0; i < 128; i++){
+    for(j = 0; j < 2; j++){
+      markPixel(BottomLineX+i, j+BottomLineY);    // Tar emot X, Y
+    }
+  }
+
+
+
+    for(i = 0; i < 4; i++){
+      for(j = 0; j < 4; j++){
+        markPixel(SinTacoX+i, j+SinTacoY);    // Tar emot X, Y
+      }
+    }
+
+  for(i = 0; i < 4; i++){
+    for(j = 0; j < 4; j++){
+      markPixel(TacoX+i, j+TacoY);    // Tar emot X, Y
+    }
+  }
+
+
+
   for(i = 0; i < 4; i++){
   	for(j = 0; j < 4; j++){
-  		markPixel(x1+i, j+y1);    // Tar emot X, Y
+  		markPixel(TacoX+i, j+TacoY);    // Tar emot X, Y
   	}
   }
 
   for(i = 0; i < 5; i++){
   	for(j = 0; j < 18 ; j++){
-  		markPixel(x2+i, j+y2);    // Tar emot X, Y
+  		markPixel(Tube1X+i, j+Tube1Y);    // Tar emot X, Y
   	}
   }
 
   for(i = 0; i < 5; i++){
   	for(j = 0; j < 10 ; j++){
-  		markPixel(x3+i, j+y3);    // Tar emot X, Y
+  		markPixel(Tube2X+i, j+Tube2Y);    // Tar emot X, Y
   	}
   }
 
   display_image(0, icon);
 
-  x1 = x1 + 1;
-  y1 = y1 ;
 
-  x2 = x2 - 1 ;
-  y2 = y2 ;
+  AccTaco = AccTaco - 1;
 
-  x3 = x3 - 1 ;
-  y3 = y3 ;
+
+  // x = x + y/2; y = y - x/2
+
+  // (startvärden x = 0, y = 16)
+
+  //double sin(double x);
+
+  //SinTacoX = SinTacoX + 1;
+  //SinTacoY = SinTacoY;
+
+
+
+
+  //SinTacoX = SinTacoX + SinTacoY/2;
+  //SinTacoX += 1;
+  //SinTacoY -= SinTacoX/2 - 4;
+
+  SinTacoX = SinTacoX + 1;
+  SinTacoY = SinTacoY + AccTaco;
+
+  TacoX = TacoX;
+  TacoY = TacoY;
+
+  Tube1X = Tube1X - 1 ;
+  Tube1Y = Tube1Y ;
+
+  Tube2X = Tube2X - 1 ;
+  Tube2Y = Tube2Y ;
 
 
 
@@ -120,16 +188,19 @@ void labwork( void )
 
     if ( getbtns() == 1){
       mytime = ((mytime & (~0xf0)) |  (getsw() << 4 ));
+      TacoX += 1;
       time2string( textstring, mytime );
     }
 
     if ( getbtns() == 2 ){
       mytime = ((mytime & (~0xf00)) |  (getsw() << 8));
+      TacoY -= 1;
       time2string( textstring, mytime );
     }
 
     if ( getbtns() == 4 ){
       mytime = ((mytime & (~0xf000)) |  (getsw() << 12));
+      TacoX -= 1;
       time2string( textstring, mytime);
     }
 
