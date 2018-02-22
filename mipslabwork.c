@@ -23,6 +23,10 @@ int x2 = 120;
 int y2 = 10;
 
 
+int x3 = 160;
+int y3 = 0;
+
+
 char textstring[] = "text, more text, and even more text!";
 
 //#define TRISD PIC_32R (0xbf8860D0)
@@ -88,6 +92,12 @@ void labwork( void )
   	}
   }
 
+  for(i = 0; i < 5; i++){
+  	for(j = 0; j < 10 ; j++){
+  		markPixel(x3+i, j+y3);    // Tar emot X, Y
+  	}
+  }
+
   display_image(0, icon);
 
   x1 = x1 + 1;
@@ -96,7 +106,8 @@ void labwork( void )
   x2 = x2 - 1 ;
   y2 = y2 ;
 
-
+  x3 = x3 - 1 ;
+  y3 = y3 ;
 
 
 
