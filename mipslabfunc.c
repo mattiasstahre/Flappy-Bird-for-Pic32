@@ -134,42 +134,42 @@ if(x<129 && y<64){
 	if(y<8){ // Page 0
 			if(y==0){
 				int write = ~1;
-				icon[x] = write;
+				icon[x] = icon[x] & write;
 			}
 
 			if(y==1){
 				int write = ~2;
-				icon[x] = write;
+				icon[x] = icon[x] & write;
 			}
 
 			if(y==2){
 				int write = ~4;
-				icon[x] = write;
+				icon[x] = icon[x] & write;
 			}
 
 			if(y==3){
 				int write = ~8;
-				icon[x] = write;
+				icon[x] = icon[x] & write;
 			}
 
 			if(y==4){
 				int write = ~16;
-				icon[x] = write;
+				icon[x] = icon[x] & write;
 			}
 
 			if(y==5){
 				int write = ~32;
-				icon[x] = write;
+				icon[x] = icon[x] & write;
 			}
 
 			if(y==6){
 				int write = ~64;
-				icon[x] = write;
+				icon[x] = icon[x] & write;
 			}
 
 			if(y==7){
 				int write = ~128;
-				icon[x] = write;
+				icon[x] = icon[x] & write;
 
 			}
 
@@ -181,42 +181,42 @@ if(x<129 && y<64){
 
 			if(y==0){
 				int write = ~1;
-				icon[128+x] = write;
+				icon[128+x] = icon[128+x] & write;
 			}
 
 			if(y==1){
 				int write = ~2;
-				icon[128+x] = write;
+				icon[128+x] = icon[128+x] & write;
 			}
 
 			if(y==2){
 				int write = ~4;
-				icon[128+x] = write;
+				icon[128+x] = icon[128+x] & write;
 			}
 
 			if(y==3){
 				int write = ~8;
-				icon[128+x] = write;
+				icon[128+x] = icon[128+x] & write;
 			}
 
 			if(y==4){
 				int write = ~16;
-				icon[128+x] = write;
+				icon[128+x] = icon[128+x] & write;
 			}
 
 			if(y==5){
 				int write = ~32;
-				icon[128+x] = write;
+				icon[128+x] = icon[128+x] & write;
 			}
 
 			if(y==6){
 				int write = ~64;
-				icon[128+x] = write;
+				icon[128+x] = icon[128+x] & write;
 			}
 
 			if(y==7){
 				int write = ~128;
-				icon[128+x] = write;
+				icon[128+x] = icon[128+x] & write;
 			}
 
 		}
@@ -226,42 +226,42 @@ if(x<129 && y<64){
 
  			if(y==0){
  				int write = ~1;
- 				icon[256+x] = write;
+ 				icon[256+x] = icon[256+x] & write;
  			}
 
  			if(y==1){
  				int write = ~2;
- 				icon[256+x] = write;
+ 				icon[256+x] = icon[256+x] & write;
  			}
 
  			if(y==2){
  				int write = ~4;
- 				icon[256+x] = write;
+ 				icon[256+x] = icon[256+x] & write;
  			}
 
  			if(y==3){
  				int write = ~8;
- 				icon[256+x] = write;
+ 				icon[256+x] = icon[256+x] & write;
  			}
 
  			if(y==4){
  				int write = ~16;
- 				icon[256+x] = write;
+ 				icon[256+x] = icon[256+x] & write;
  			}
 
  			if(y==5){
  				int write = ~32;
- 				icon[256+x] = write;
+ 				icon[256+x] = icon[256+x] & write;
  			}
 
  			if(y==6){
  				int write = ~64;
- 				icon[256+x] = write;
+ 				icon[256+x] = icon[256+x] & write;
  			}
 
  			if(y==7){
  				int write = ~128;
- 				icon[256+x] = write;
+ 				icon[256+x] = icon[256+x] & write;
  			}
 
  		}
@@ -272,47 +272,58 @@ if(x<129 && y<64){
 
  			if(y==0){
  				int write = ~1;
- 				icon[384+x] = write;
+ 				icon[384+x] = icon[384+x] & write;
  			}
 
  			if(y==1){
  				int write = ~2;
- 				icon[384+x] = write;
+ 				icon[384+x] = icon[384+x] & write;
  			}
 
  			if(y==2){
  				int write = ~4;
- 				icon[384+x] = write;
+ 				icon[384+x] = icon[384+x] & write;
  			}
 
  			if(y==3){
  				int write = ~8;
- 				icon[384+x] = write;
+ 				icon[384+x] = icon[384+x] & write;
  			}
 
  			if(y==4){
  				int write = ~16;
- 				icon[384+x] = write;
+ 				icon[384+x] = icon[384+x] & write;
  			}
 
  			if(y==5){
  				int write = ~32;
- 				icon[384+x] = write;
+ 				icon[384+x] = icon[384+x] & write;
  			}
 
  			if(y==6){
  				int write = ~64;
- 				icon[384+x] = write;
+ 				icon[384+x] = icon[384+x] & write;
  			}
 
  			if(y==7){
  				int write = ~128;
- 				icon[384+x] = write;
+ 				icon[384+x] = icon[384+x] & write;
  			}
 
  		}
 
 }
+}
+
+void clearScreenMemory (void){
+
+	int i = 0;
+
+	for(i = 0; i<512;i++){
+		icon[i] = 255;
+	}
+
+
 }
 
 void display_string(int line, char *s) {

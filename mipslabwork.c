@@ -16,6 +16,13 @@
 
 int mytime = 0x5957;
 
+int x1 = 10;
+int y1 = 10;
+
+int x2 = 120;
+int y2 = 10;
+
+
 char textstring[] = "text, more text, and even more text!";
 
 //#define TRISD PIC_32R (0xbf8860D0)
@@ -63,7 +70,39 @@ TRISD = 0xfe0;
 void labwork( void )
 {
 
-  delay( 1000 );
+  int i;
+  int j;
+  // Emulerar position för objekt.
+
+  clearScreenMemory();
+
+  for(i = 0; i < 4; i++){
+  	for(j = 0; j < 4; j++){
+  		markPixel(x1+i, j+y1);    // Tar emot X, Y
+  	}
+  }
+
+  for(i = 0; i < 5; i++){
+  	for(j = 0; j < 18 ; j++){
+  		markPixel(x2+i, j+y2);    // Tar emot X, Y
+  	}
+  }
+
+  display_image(0, icon);
+
+  x1 = x1 + 1;
+  y1 = y1 ;
+
+  x2 = x2 - 1 ;
+  y2 = y2 ;
+
+
+
+
+
+
+
+  delay( 80 );
 
   time2string( textstring, mytime );  // mytime är hex t ex 0x5957
     // nollställer rätt bitar ex 8:5 i mytime. Vi lägger på värdet från getsw i dem bitarna.
@@ -92,7 +131,7 @@ void labwork( void )
   // +1 varje gång labwork anropas.
   *initPORTE += 1;
 
-  //display_image(0, icon);
+
 
 
 

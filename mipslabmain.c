@@ -65,16 +65,6 @@ int main(void) {
 
 	display_update();
 
-int i;
-
-for(i = 0; i < 40; i++){
-
-		markPixel(i*i/6, i );    // Tar emot X, Y
-}
-
-
-
-	display_image(0, icon);
 
 	labinit(); /* Do any lab-specific initialization */
 
