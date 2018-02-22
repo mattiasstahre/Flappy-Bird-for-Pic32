@@ -32,6 +32,7 @@ void quicksleep(int cyc) {
 	for(i = cyc; i > 0; i--);
 }
 
+
 /* tick:
    Add 1 to time in memory, at location pointed to by parameter.
    Time is stored as 4 pairs of 2 NBCD-digits.
