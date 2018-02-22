@@ -26,7 +26,7 @@ int SinTacoX = 0;
 int SinTacoY = 32;
 
 int TacoX = 15;
-int TacoY = 15;
+int TacoY = 5;
 
 int Tube1X = 120;
 int Tube1Y = 10;
@@ -39,6 +39,10 @@ int TopLineY = 0;      //Försvinner vid 32
 
 int Tube2X = 160;
 int Tube2Y = 0;
+
+
+int GameOverX = 0;
+int GameOverY = 0;
 
 
 char textstring[] = "text, more text, and even more text!";
@@ -90,9 +94,38 @@ void labwork( void )
 
   int i;
   int j;
+
+
+  TacoY += 1;
+
+
+  //Game over
+
   // Emulerar position för objekt.
 
   clearScreenMemory();
+
+
+  if (TacoY>=32) {
+
+    for(i = 0; i < 128; i++){
+      for(j = 0; j < 32; j++){
+        markPixel(GameOverX+i, j+GameOverY);    // Tar emot X, Y
+      }
+    }
+
+  }
+
+
+  if (TacoY == ) {
+
+    for(i = 0; i < 128; i++){
+      for(j = 0; j < 32; j++){
+        markPixel(GameOverX+i, j+GameOverY);    // Tar emot X, Y
+      }
+    }
+
+  }
 
 
 
@@ -110,12 +143,15 @@ void labwork( void )
   }
 
 
-
+  /*
     for(i = 0; i < 4; i++){
       for(j = 0; j < 4; j++){
         markPixel(SinTacoX+i, j+SinTacoY);    // Tar emot X, Y
       }
     }
+
+    */
+
 
   for(i = 0; i < 4; i++){
     for(j = 0; j < 4; j++){
@@ -188,19 +224,18 @@ void labwork( void )
 
     if ( getbtns() == 1){
       mytime = ((mytime & (~0xf0)) |  (getsw() << 4 ));
-      TacoX += 1;
       time2string( textstring, mytime );
     }
 
     if ( getbtns() == 2 ){
       mytime = ((mytime & (~0xf00)) |  (getsw() << 8));
-      TacoY -= 1;
+      TacoY -= 2;
       time2string( textstring, mytime );
     }
 
     if ( getbtns() == 4 ){
       mytime = ((mytime & (~0xf000)) |  (getsw() << 12));
-      TacoX -= 1;
+      TacoY += 1;
       time2string( textstring, mytime);
     }
 
