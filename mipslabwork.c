@@ -18,18 +18,22 @@
 
 #define PI 3.14159265
 
+
+//Alla våra objekt nedan
+
+
+// prime = nextprime( prime );
+
+
 int mytime = 0x5957;
 
-int AccTaco = 2;
-
-int SinTacoX = 0;
-int SinTacoY = 32;
+int score = 12345;
 
 int TacoX = 15;       //Tacon som flyger
 int TacoY = 5;
 
-int Tube1X = 120;
-int Tube1Y = 10;
+int Tube1X = 60;
+int Tube1Y = 25;
 
 int BottomLineX = 0;      //Statiska linjen längst ner
 int BottomLineY = 30;
@@ -40,8 +44,11 @@ int TopLineY = 0;
 int Tube2X = 160;
 int Tube2Y = 0;
 
-int GameOverX = 0;
-int GameOverY = 0;
+//int GameOverX = 0;
+//int GameOverY = 0;
+
+
+
 
 
 char textstring[] = "text, more text, and even more text!";
@@ -91,11 +98,44 @@ TRISD = 0xfe0;
 void labwork( void )
 {
 
+if (gameState == 0)
+{
+
+drawGameOver();
+
+delay(0);
+
+}
+/*
+  switch (gameState){
+    case 0:
+    break;
+
+    case 1:
+    while(0){
+
+      drawGameOver();
+
+    }
+    break;
+
+    case 2:
+    break;
+
+    default:
+    break;
+  }
+
+  */
+
+
+  display_string( 12, itoaconv( score ) );
+
   int i;
   int j;
 
 
-  TacoY += 2;
+  TacoY += 1;
 
 
   //Game over
@@ -105,107 +145,52 @@ void labwork( void )
   clearScreenMemory();
 
 
-  if (TacoY>=32 | TacoY<=0) {     //Om tacon går utanför översta eller understa
-                                  //linjen --> Game Over
-    TacoY = 33;
 
 
-    for(i = 0; i < 128; i++){
-      for(j = 0; j < 32; j++){
-        markPixel(GameOverX+i, j+GameOverY);    // Tar emot X, Y
+
+
+
+//drawGameOver (GameOverX, GameOverY);
+drawTopLine (TopLineX, TopLineY);
+
+drawBottomLine(BottomLineX, BottomLineY);
+drawTube1(Tube1X, Tube1Y);
+drawTube2(Tube2X, Tube2Y);
+
+
+drawTaco(TacoX, TacoY);
+
+// int write = ~128;
+// icon[384+x] = icon[384+x] & write;
+
+
+// gameState = crash(Tube1X, TacoX, TacoY, Tube1Y);
+
+
+/*
+if ((Tube1X -TacoX) <= 0 && (TacoY - Tube1Y) <= 0)) {
+    if ((Tube1X -TacoX) <= -3 && (TacoY - Tube1Y) <= -9) {
+        drawGameOver (GameOverX, GameOverY);
+    }
+  }
+
+if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
+    if ((Tube1X -TacoX) <= 3 && (TacoY - Tube1Y) <= 9) {
+        drawGameOver (GameOverX, GameOverY);
       }
+    }*/
+                                        // rör --> Game Over
+
+/*  for(i = 0; i < 128; i++){
+    for(j = 0; j < 32; j++){
+      markPixel(GameOverX+i, j+GameOverY);    // Tar emot X, Y
     }
-
-  }
-
-
-  if (TacoY == Tube1Y | TacoY == Tube2Y) { //Om tacon kör in i ett
-                                          // rör --> Game Over
-
-    for(i = 0; i < 128; i++){
-      for(j = 0; j < 32; j++){
-        markPixel(GameOverX+i, j+GameOverY);    // Tar emot X, Y
-      }
-    }
-
-  }
+  }*/
 
 
-
-  for(i = 0; i < 128; i++){
-    for(j = 0; j < 2; j++){
-      markPixel(TopLineX+i, j+TopLineY);    // Tar emot X, Y
-    }
-  }
-
-
-  for(i = 0; i < 128; i++){
-    for(j = 0; j < 2; j++){
-      markPixel(BottomLineX+i, j+BottomLineY);    // Tar emot X, Y
-    }
-  }
-
-
-  /*
-    for(i = 0; i < 4; i++){
-      for(j = 0; j < 4; j++){
-        markPixel(SinTacoX+i, j+SinTacoY);    // Tar emot X, Y
-      }
-    }
-
-    */
-
-
-  for(i = 0; i < 4; i++){
-    for(j = 0; j < 4; j++){
-      markPixel(TacoX+i, j+TacoY);    // Tar emot X, Y
-    }
-  }
-
-
-
-  for(i = 0; i < 4; i++){
-  	for(j = 0; j < 4; j++){
-  		markPixel(TacoX+i, j+TacoY);    // Tar emot X, Y
-  	}
-  }
-
-  for(i = 0; i < 5; i++){
-  	for(j = 0; j < 18 ; j++){
-  		markPixel(Tube1X+i, j+Tube1Y);    // Tar emot X, Y
-  	}
-  }
-
-  for(i = 0; i < 5; i++){
-  	for(j = 0; j < 10 ; j++){
-  		markPixel(Tube2X+i, j+Tube2Y);    // Tar emot X, Y
-  	}
-  }
 
   display_image(0, icon);
 
-
-  AccTaco = AccTaco - 1;
-
-
-  // x = x + y/2; y = y - x/2
-
-  // (startvärden x = 0, y = 16)
-
-  //double sin(double x);
-
-  //SinTacoX = SinTacoX + 1;
-  //SinTacoY = SinTacoY;
-
-
-
-
-  //SinTacoX = SinTacoX + SinTacoY/2;
-  //SinTacoX += 1;
-  //SinTacoY -= SinTacoX/2 - 4;
-
-  SinTacoX = SinTacoX + 1;
-  SinTacoY = SinTacoY + AccTaco;
 
   TacoX = TacoX;
   TacoY = TacoY;
@@ -217,10 +202,13 @@ void labwork( void )
   Tube2Y = Tube2Y ;
 
 
+  display_string( 3, textstring );
+  //display_update();
+  tick( &mytime );
 
 
 
-  delay( 80 );
+  delay(80);
 
   time2string( textstring, mytime );  // mytime är hex t ex 0x5957
     // nollställer rätt bitar ex 8:5 i mytime. Vi lägger på värdet från getsw i dem bitarna.
@@ -238,15 +226,12 @@ void labwork( void )
 
     if ( getbtns() == 4 ){
       mytime = ((mytime & (~0xf000)) |  (getsw() << 12));
-      TacoY += 1;
       time2string( textstring, mytime);
     }
 
 
 
-  //display_string( 3, textstring );
-  //display_update();
-  tick( &mytime );
+
 
   // +1 varje gång labwork anropas.
   *initPORTE += 1;

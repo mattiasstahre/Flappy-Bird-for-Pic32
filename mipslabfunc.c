@@ -9,6 +9,7 @@
 #include "mipslab.h"  /* Declatations for these labs */
 #include <math.h>
 
+
 /* Declare a helper function which is local to this file */
 static void num32asc( char * s, int );
 
@@ -23,6 +24,11 @@ static void num32asc( char * s, int );
 
 #define DISPLAY_TURN_OFF_VDD (PORTFSET = 0x40)
 #define DISPLAY_TURN_OFF_VBAT (PORTFSET = 0x20)
+
+int i;
+int j;
+
+
 
 /* quicksleep:
    A simple function to create a small delay.
@@ -137,6 +143,8 @@ if(x<129 && y<64){
 			if(y==0){
 				int write = ~1;
 				icon[x] = icon[x] & write;
+				}
+
 			}
 
 			if(y==1){
@@ -315,7 +323,259 @@ if(x<129 && y<64){
  		}
 
 }
+
+
+
+void markTaco (int x, int y){
+
+// int gameState = 0;
+
+if(x<129 && y<64){
+
+	if(y>= 8 && y<16){
+		y=y-8;
+		x = x +128;
+	}
+
+	if(y>= 16 && y<24){
+		y=y-16;
+		x = x +256;
+
+	}
+
+	if(y>= 24 && y<32){
+		y=y-24;
+		x = x +384;
+	}
+
+
+
+	//if(y<8){ // Page 0
+
+
+			if(y==0){
+				int write = ~1;
+				if ((icon[x] ^ write) != 0){
+					gameState = 1;
+				}
+
+				icon[x] = icon[x] & write;
+				}
+
+
+			if(y==1){
+				int write = ~2;
+				if ((icon[x] ^ write) != 0){
+					gameState = 1;
+				}
+
+				icon[x] = icon[x] & write;
+				}
+
+			if(y==2){
+				int write = ~4;
+				if ((icon[x] ^ write) != 0){
+					gameState = 1;
+				}
+
+				icon[x] = icon[x] & write;
+				}
+
+			if(y==3){
+				int write = ~8;
+				if ((icon[x] ^ write) != 0){
+					gameState = 1;
+				}
+
+				icon[x] = icon[x] & write;
+				}
+
+			if(y==4){
+				int write = ~16;
+				if ((icon[x] ^ write) != 0){
+					gameState = 1;
+				}
+
+				icon[x] = icon[x] & write;
+				}
+
+			if(y==5){
+				int write = ~32;
+				if ((icon[x] ^ write) != 0){
+					gameState = 1;
+				}
+
+				icon[x] = icon[x] & write;
+				}
+
+			if(y==6){
+				int write = ~64;
+				if ((icon[x] ^ write) != 0){
+					gameState = 1;
+				}
+
+				icon[x] = icon[x] & write;
+				}
+
+			if(y==7){
+				int write = ~128;
+				if ((icon[x] ^ write) != 0){
+					gameState = 1;
+				}
+
+				icon[x] = icon[x] & write;
+				}
+
+		}
+
+
+	}
+
+
+	//while (1)
+
+	/*
+
+
+	 if(y>= 8 && y<16){ // Page 1
+			y = y - 8;
+
+			if(y==0){
+				int write = ~1;
+				icon[128+x] = icon[128+x] & write;
+			}
+
+			if(y==1){
+				int write = ~2;
+				icon[128+x] = icon[128+x] & write;
+			}
+
+			if(y==2){
+				int write = ~4;
+				icon[128+x] = icon[128+x] & write;
+			}
+
+			if(y==3){
+				int write = ~8;
+				icon[128+x] = icon[128+x] & write;
+			}
+
+			if(y==4){
+				int write = ~16;
+				icon[128+x] = icon[128+x] & write;
+			}
+
+			if(y==5){
+				int write = ~32;
+				icon[128+x] = icon[128+x] & write;
+			}
+
+			if(y==6){
+				int write = ~64;
+				icon[128+x] = icon[128+x] & write;
+			}
+
+			if(y==7){
+				int write = ~128;
+				icon[128+x] = icon[128+x] & write;
+			}
+
+		}
+
+		if(y>= 16 && y<24){ // Page 2
+ 			y = y - 16;
+
+ 			if(y==0){
+ 				int write = ~1;
+ 				icon[256+x] = icon[256+x] & write;
+ 			}
+
+ 			if(y==1){
+ 				int write = ~2;
+ 				icon[256+x] = icon[256+x] & write;
+ 			}
+
+ 			if(y==2){
+ 				int write = ~4;
+ 				icon[256+x] = icon[256+x] & write;
+ 			}
+
+ 			if(y==3){
+ 				int write = ~8;
+ 				icon[256+x] = icon[256+x] & write;
+ 			}
+
+ 			if(y==4){
+ 				int write = ~16;
+ 				icon[256+x] = icon[256+x] & write;
+ 			}
+
+ 			if(y==5){
+ 				int write = ~32;
+ 				icon[256+x] = icon[256+x] & write;
+ 			}
+
+ 			if(y==6){
+ 				int write = ~64;
+ 				icon[256+x] = icon[256+x] & write;
+ 			}
+
+ 			if(y==7){
+ 				int write = ~128;
+ 				icon[256+x] = icon[256+x] & write;
+ 			}
+
+ 		}
+
+
+		if(y>= 24 && y<32){ // Page 2
+ 			y = y - 24;
+
+ 			if(y==0){
+ 				int write = ~1;
+ 				icon[384+x] = icon[384+x] & write;
+ 			}
+
+ 			if(y==1){
+ 				int write = ~2;
+ 				icon[384+x] = icon[384+x] & write;
+ 			}
+
+ 			if(y==2){
+ 				int write = ~4;
+ 				icon[384+x] = icon[384+x] & write;
+ 			}
+
+ 			if(y==3){
+ 				int write = ~8;
+ 				icon[384+x] = icon[384+x] & write;
+ 			}
+
+ 			if(y==4){
+ 				int write = ~16;
+ 				icon[384+x] = icon[384+x] & write;
+ 			}
+
+ 			if(y==5){
+ 				int write = ~32;
+ 				icon[384+x] = icon[384+x] & write;
+ 			}
+
+ 			if(y==6){
+ 				int write = ~64;
+ 				icon[384+x] = icon[384+x] & write;
+ 			}
+
+ 			if(y==7){
+ 				int write = ~128;
+ 				icon[384+x] = icon[384+x] & write;
+ 			}
+
+ 		}
+
 }
+}
+*/
 
 void clearScreenMemory (void){
 
@@ -324,9 +584,127 @@ void clearScreenMemory (void){
 	for(i = 0; i<512;i++){
 		icon[i] = 255;
 	}
+}
 
+
+void drawTaco(int TacoX, int TacoY){
+
+
+/*
+	if(y==0){
+		int write = ~1;
+		icon[384+x] = icon[384+x] & write;
+
+
+
+if icon [TacoX] != 256
+	if
+game over
+
+*/
+
+// if (~icon[x] & write)
+
+
+	  for (i = -1; i <= 1; i++){
+	      markTaco(TacoX+i, TacoY-2);
+
+	  }
+	      markTaco(TacoX-2, TacoY-1);
+	      markTaco(TacoX+2, TacoY-1);
+	      markTaco(TacoX-3, TacoY+0);
+	      markTaco(TacoX+3, TacoY+0);
+	      markTaco(TacoX-3, TacoY+1);
+	      markTaco(TacoX+3, TacoY+1);
+
+	  for (i = -3; i <= 3; i++){
+	      markTaco(TacoX+i, TacoY+2);
+	  }
+
+	}
+
+void drawGameOver(void){
+
+
+	for(i = 0; i < 128; i++){
+		for(j = 0; j < 32; j++){
+			markPixel(i, j);    // Tar emot X, Y
+		}
+	}
 
 }
+
+
+void drawTopLine(int TopLineX, int TopLineY){
+
+	for(i = 0; i < 128; i++){
+		for(j = 0; j < 2; j++){
+		markPixel(TopLineX+i, j+TopLineY);    // Tar emot X, Y
+	}
+}
+}
+
+
+void drawBottomLine(int BottomLineX, int BottomLineY){
+
+for(i = 0; i < 128; i++){
+	for(j = 0; j < 2; j++){
+		markPixel(BottomLineX+i, j+BottomLineY);    // Tar emot X, Y
+	}
+}
+}
+
+void drawTube1(int Tube1X, int Tube1Y){
+
+	for(i = -3; i <= 3; i++){
+		for(j = -3; j <= 3 ; j++){
+			markPixel(Tube1X+i, j+Tube1Y);    // Tar emot X, Y
+		}
+	}
+
+}
+
+void drawTube2(int Tube2X, int Tube2Y){
+
+	for(i = -2; i < 3; i++){
+		for(j = -5; j < 5 ; j++){
+			markPixel(Tube2X+i, j+Tube2Y);    // Tar emot X, Y
+		}
+	}
+}
+
+
+
+int crash (int Tube1X, int TacoX, int TacoY, int Tube1Y) {
+
+int a = 0;
+
+if ((Tube1X -TacoX) <= 0 && (TacoY - Tube1Y) <= 0) {
+    if ((Tube1X -TacoX) <= -3 && (TacoY - Tube1Y) <= -3) {
+        drawGameOver();
+				a = 1;
+    }
+  }
+
+if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0){
+    if ((Tube1X -TacoX) <= 3 && (TacoY - Tube1Y) <= 3) {
+        drawGameOver();
+				a = 1;
+      }
+    }
+
+		if (TacoY>=32 | TacoY<=0) {     //Om tacon går utanför översta eller understa
+																		//linjen --> Game Over
+			TacoY = 33;
+			drawGameOver();
+			a = 1;
+			// CHANGE STATE OF GAME
+		}
+
+		return a;
+
+}
+
 
 void display_string(int line, char *s) {
 	int i;
