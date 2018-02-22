@@ -25,21 +25,20 @@ int AccTaco = 2;
 int SinTacoX = 0;
 int SinTacoY = 32;
 
-int TacoX = 15;
+int TacoX = 15;       //Tacon som flyger
 int TacoY = 5;
 
 int Tube1X = 120;
 int Tube1Y = 10;
 
-int BottomLineX = 0;
+int BottomLineX = 0;      //Statiska linjen längst ner
 int BottomLineY = 30;
 
-int TopLineX = 0;
-int TopLineY = 0;      //Försvinner vid 32
+int TopLineX = 0;       //Statiska linjen längst upp
+int TopLineY = 0;
 
 int Tube2X = 160;
 int Tube2Y = 0;
-
 
 int GameOverX = 0;
 int GameOverY = 0;
@@ -96,7 +95,7 @@ void labwork( void )
   int j;
 
 
-  TacoY += 1;
+  TacoY += 2;
 
 
   //Game over
@@ -106,7 +105,10 @@ void labwork( void )
   clearScreenMemory();
 
 
-  if (TacoY>=32) {
+  if (TacoY>=32 | TacoY<=0) {     //Om tacon går utanför översta eller understa
+                                  //linjen --> Game Over
+    TacoY = 33;
+
 
     for(i = 0; i < 128; i++){
       for(j = 0; j < 32; j++){
@@ -117,7 +119,8 @@ void labwork( void )
   }
 
 
-  if (TacoY == ) {
+  if (TacoY == Tube1Y | TacoY == Tube2Y) { //Om tacon kör in i ett
+                                          // rör --> Game Over
 
     for(i = 0; i < 128; i++){
       for(j = 0; j < 32; j++){
@@ -229,7 +232,7 @@ void labwork( void )
 
     if ( getbtns() == 2 ){
       mytime = ((mytime & (~0xf00)) |  (getsw() << 8));
-      TacoY -= 2;
+      TacoY -= 4;
       time2string( textstring, mytime );
     }
 
