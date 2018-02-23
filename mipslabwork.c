@@ -101,7 +101,7 @@ TRISD = 0xfe0;
 void labwork( void )
 {
 
-rnum = 3;
+
 
 
   if (gameState == 1){
@@ -156,6 +156,7 @@ rnum = 3;
   clearScreenMemory();
 
 
+rnum = 10;
 
 
 
@@ -216,7 +217,6 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
   display_string( 3, textstring );
   //display_update();
   tick( &mytime );
-
 
 
   delay(50);
