@@ -121,6 +121,7 @@ void labwork( void )
 
 if (gameState == 2){                //Main Menu
 
+StartCountDown();
   while(gameState == 2){
 
       countStart++;
@@ -128,7 +129,7 @@ if (gameState == 2){                //Main Menu
       delay(10);
 
       if(getbtns() == 4){
-        gameState = 0;
+        //gameState = 0;
 
       }
 
@@ -240,27 +241,48 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
   //display_update();
   tick( &mytime );
 
+  if (getsw() == 1){      // //Om switch längst till vänster är nertryckt
+    delay(200);
+  }
 
-  delay(50);
+  if (getsw() == 2){
+    delay(35);
+  }
+
+  if (getsw() == 4){
+    delay(25);
+  }
+
+  if (getsw() == 8){    //Om switch längst till vänster är nertryckt
+    delay(15);
+  }
+
+  else
+  {
+    delay(50);
+
+  }
+
 
   time2string( textstring, mytime );  // mytime är hex t ex 0x5957
     // nollställer rätt bitar ex 8:5 i mytime. Vi lägger på värdet från getsw i dem bitarna.
 
     if ( getbtns() == 1){
-      mytime = ((mytime & (~0xf0)) |  (getsw() << 4 ));
-      time2string( textstring, mytime );
+      //mytime = ((mytime & (~0xf0)) |  (getsw() << 4 ));
+      //time2string( textstring, mytime );
+      gameState = 2;
     }
 
     if ( getbtns() == 2 ){
-      mytime = ((mytime & (~0xf00)) |  (getsw() << 8));
+      //mytime = ((mytime & (~0xf00)) |  (getsw() << 8));
       TacoY -= 4;
-      time2string( textstring, mytime );
+      //time2string( textstring, mytime );
     }
 
     if ( getbtns() == 4 ){
-      mytime = ((mytime & (~0xf000)) |  (getsw() << 12));
-      gameState = 0;
-      time2string( textstring, mytime);
+      //mytime = ((mytime & (~0xf000)) |  (getsw() << 12));
+
+      //time2string( textstring, mytime);
     }
 
 
