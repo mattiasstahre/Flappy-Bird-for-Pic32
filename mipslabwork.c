@@ -15,6 +15,7 @@
 #include "mipslab.h"  /* Declatations for these labs */
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define PI 3.14159265
 
@@ -23,6 +24,8 @@
 
 
 // prime = nextprime( prime );
+
+
 
 
 int mytime = 0x5957;
@@ -47,7 +50,7 @@ int Tube2Y = 0;
 //int GameOverX = 0;
 //int GameOverY = 0;
 
-
+int rnum;
 
 
 
@@ -98,12 +101,20 @@ TRISD = 0xfe0;
 void labwork( void )
 {
 
-if (gameState == 0)
-{
+rnum = ???
 
-drawGameOver();
 
-delay(0);
+  if (gameState == 1){
+
+    drawGameOver();
+    display_image(0, icon);
+    delay(2000);
+    TacoX = 15;       //Tacon som flyger
+    TacoY = 7;
+
+    display_update();
+    gameState = 0;
+
 
 }
 /*
@@ -154,7 +165,7 @@ delay(0);
 drawTopLine (TopLineX, TopLineY);
 
 drawBottomLine(BottomLineX, BottomLineY);
-drawTube1(Tube1X, Tube1Y);
+drawTube1(Tube1X, Tube1Y, rnum);
 drawTube2(Tube2X, Tube2Y);
 
 
@@ -208,7 +219,7 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
 
 
 
-  delay(80);
+  delay(50);
 
   time2string( textstring, mytime );  // mytime är hex t ex 0x5957
     // nollställer rätt bitar ex 8:5 i mytime. Vi lägger på värdet från getsw i dem bitarna.
