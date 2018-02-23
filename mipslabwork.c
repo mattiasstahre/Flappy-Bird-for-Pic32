@@ -16,7 +16,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#define PI 3.1415926
+#define PI 3.14159265
 
 
 //Alla våra objekt nedan
@@ -37,12 +37,14 @@ int Tube1X = 60;
 int Tube1Y = 25;
 
 
-
+/*
 for(int i=0; i < 6; i++){
 
   checkIfFree(Tube1X, Tube1Y, Tube1Free);
   generateObjekt(Tube[i*3]Free);
 }
+
+*/
 
 int Tube1Free = 0;
 
