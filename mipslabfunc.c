@@ -322,19 +322,19 @@ void drawGameOver(void){
 }
 
 
-void drawTopLine(int TopLineX, int TopLineY){
+void drawTopLine(void){
 	for(i = 0; i < 128; i++){
 		for(j = 0; j < 1; j++){
-		markPixel(TopLineX+i, j+TopLineY);    // Tar emot X, Y
+		markPixel(i, j);    // Tar emot X, Y
 	}
 }
 }
 
 
-void drawBottomLine(int BottomLineX, int BottomLineY){
+void drawBottomLine(void){
 	for(i = 0; i < 128; i++){
-		for(j = 0; j < 1; j++){
-			markPixel(BottomLineX+i, j+BottomLineY);    // Tar emot X, Y
+		for(j = 31; j < 32; j++){
+			markPixel(i, j);    // Tar emot X, Y
 	}
 }
 }
