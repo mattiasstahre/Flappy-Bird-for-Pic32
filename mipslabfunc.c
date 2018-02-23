@@ -347,7 +347,7 @@ if(x<129 && y<64){
 		y=y-24;
 		x = x +384;
 	}
-
+dfmekmfek
 
 
 	//if(y<8){ // Page 0
