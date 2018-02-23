@@ -136,194 +136,66 @@ void display_init(void) {
 
 void markPixel (int x, int y){
 
+	// int gameState = 0;
 
-if(x<129 && y<64){
+	if(x<129 && y<64){
 
-	if(y<8){ // Page 0
-			if(y==0){
-				int write = ~1;
-				icon[x] = icon[x] & write;
-				}
-
-			}
-
-			if(y==1){
-				int write = ~2;
-				icon[x] = icon[x] & write;
-			}
-
-			if(y==2){
-				int write = ~4;
-				icon[x] = icon[x] & write;
-			}
-
-			if(y==3){
-				int write = ~8;
-				icon[x] = icon[x] & write;
-			}
-
-			if(y==4){
-				int write = ~16;
-				icon[x] = icon[x] & write;
-			}
-
-			if(y==5){
-				int write = ~32;
-				icon[x] = icon[x] & write;
-			}
-
-			if(y==6){
-				int write = ~64;
-				icon[x] = icon[x] & write;
-			}
-
-			if(y==7){
-				int write = ~128;
-				icon[x] = icon[x] & write;
-
-			}
-
+		if(y>= 8 && y<16){
+			y=y-8;
+			x = x +128;
 		}
 
-
-	 if(y>= 8 && y<16){ // Page 1
-			y = y - 8;
-
-			if(y==0){
-				int write = ~1;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==1){
-				int write = ~2;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==2){
-				int write = ~4;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==3){
-				int write = ~8;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==4){
-				int write = ~16;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==5){
-				int write = ~32;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==6){
-				int write = ~64;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==7){
-				int write = ~128;
-				icon[128+x] = icon[128+x] & write;
-			}
-
+		if(y>= 16 && y<24){
+			y=y-16;
+			x = x +256;
 		}
 
-		if(y>= 16 && y<24){ // Page 2
- 			y = y - 16;
+		if(y>= 24 && y<32){
+			y=y-24;
+			x = x +384;
+		}
 
- 			if(y==0){
- 				int write = ~1;
- 				icon[256+x] = icon[256+x] & write;
- 			}
+				if(y==0){
+					int write = ~1;
+					icon[x] = icon[x] & write;
+					}
 
- 			if(y==1){
- 				int write = ~2;
- 				icon[256+x] = icon[256+x] & write;
- 			}
+					if(y==1){
+					int write = ~2;
+					icon[x] = icon[x] & write;
+					}
 
- 			if(y==2){
- 				int write = ~4;
- 				icon[256+x] = icon[256+x] & write;
- 			}
+				if(y==2){
+					int write = ~4;
+					icon[x] = icon[x] & write;
+					}
 
- 			if(y==3){
- 				int write = ~8;
- 				icon[256+x] = icon[256+x] & write;
- 			}
+				if(y==3){
+					int write = ~8;
+					icon[x] = icon[x] & write;
+					}
 
- 			if(y==4){
- 				int write = ~16;
- 				icon[256+x] = icon[256+x] & write;
- 			}
+				if(y==4){
+					int write = ~16;
+					icon[x] = icon[x] & write;
+					}
 
- 			if(y==5){
- 				int write = ~32;
- 				icon[256+x] = icon[256+x] & write;
- 			}
+				if(y==5){
+					int write = ~32;
+					icon[x] = icon[x] & write;
+					}
 
- 			if(y==6){
- 				int write = ~64;
- 				icon[256+x] = icon[256+x] & write;
- 			}
+				if(y==6){
+					int write = ~64;
+					icon[x] = icon[x] & write;
+					}
 
- 			if(y==7){
- 				int write = ~128;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 		}
-
-
-		if(y>= 24 && y<32){ // Page 2
- 			y = y - 24;
-
- 			if(y==0){
- 				int write = ~1;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==1){
- 				int write = ~2;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==2){
- 				int write = ~4;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==3){
- 				int write = ~8;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==4){
- 				int write = ~16;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==5){
- 				int write = ~32;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==6){
- 				int write = ~64;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==7){
- 				int write = ~128;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 		}
-
+				if(y==7){
+					int write = ~128;
+					icon[x] = icon[x] & write;
+					}
+			}
 }
-
 
 
 void markTaco (int x, int y){
@@ -349,26 +221,19 @@ if(x<129 && y<64){
 	}
 
 
-
-	//if(y<8){ // Page 0
-
-
 			if(y==0){
 				int write = ~1;
 				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
-
 				icon[x] = icon[x] & write;
 				}
-
 
 			if(y==1){
 				int write = ~2;
 				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
-
 				icon[x] = icon[x] & write;
 				}
 
@@ -377,7 +242,6 @@ if(x<129 && y<64){
 				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
-
 				icon[x] = icon[x] & write;
 				}
 
@@ -386,7 +250,6 @@ if(x<129 && y<64){
 				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
-
 				icon[x] = icon[x] & write;
 				}
 
@@ -395,7 +258,6 @@ if(x<129 && y<64){
 				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
-
 				icon[x] = icon[x] & write;
 				}
 
@@ -404,7 +266,6 @@ if(x<129 && y<64){
 				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
-
 				icon[x] = icon[x] & write;
 				}
 
@@ -413,7 +274,6 @@ if(x<129 && y<64){
 				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
-
 				icon[x] = icon[x] & write;
 				}
 
@@ -422,165 +282,13 @@ if(x<129 && y<64){
 				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
-
 				icon[x] = icon[x] & write;
 				}
-
 		}
-
-
 	}
 
-
-	//while (1)
-
-	/*
-
-
-	 if(y>= 8 && y<16){ // Page 1
-			y = y - 8;
-
-			if(y==0){
-				int write = ~1;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==1){
-				int write = ~2;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==2){
-				int write = ~4;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==3){
-				int write = ~8;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==4){
-				int write = ~16;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==5){
-				int write = ~32;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==6){
-				int write = ~64;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-			if(y==7){
-				int write = ~128;
-				icon[128+x] = icon[128+x] & write;
-			}
-
-		}
-
-		if(y>= 16 && y<24){ // Page 2
- 			y = y - 16;
-
- 			if(y==0){
- 				int write = ~1;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 			if(y==1){
- 				int write = ~2;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 			if(y==2){
- 				int write = ~4;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 			if(y==3){
- 				int write = ~8;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 			if(y==4){
- 				int write = ~16;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 			if(y==5){
- 				int write = ~32;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 			if(y==6){
- 				int write = ~64;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 			if(y==7){
- 				int write = ~128;
- 				icon[256+x] = icon[256+x] & write;
- 			}
-
- 		}
-
-
-		if(y>= 24 && y<32){ // Page 2
- 			y = y - 24;
-
- 			if(y==0){
- 				int write = ~1;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==1){
- 				int write = ~2;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==2){
- 				int write = ~4;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==3){
- 				int write = ~8;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==4){
- 				int write = ~16;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==5){
- 				int write = ~32;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==6){
- 				int write = ~64;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 			if(y==7){
- 				int write = ~128;
- 				icon[384+x] = icon[384+x] & write;
- 			}
-
- 		}
-
-}
-}
-*/
-
 void clearScreenMemory (void){
-
 	int i = 0;
-
 	for(i = 0; i<512;i++){
 		icon[i] = 255;
 	}
@@ -588,27 +296,8 @@ void clearScreenMemory (void){
 
 
 void drawTaco(int TacoX, int TacoY){
-
-
-/*
-	if(y==0){
-		int write = ~1;
-		icon[384+x] = icon[384+x] & write;
-
-
-
-if icon [TacoX] != 256
-	if
-game over
-
-*/
-
-// if (~icon[x] & write)
-
-
 	  for (i = -1; i <= 1; i++){
 	      markTaco(TacoX+i, TacoY-2);
-
 	  }
 	      markTaco(TacoX-2, TacoY-1);
 	      markTaco(TacoX+2, TacoY-1);
@@ -620,23 +309,20 @@ game over
 	  for (i = -3; i <= 3; i++){
 	      markTaco(TacoX+i, TacoY+2);
 	  }
-
 	}
 
+
+
 void drawGameOver(void){
-
-
 	for(i = 0; i < 128; i++){
 		for(j = 0; j < 32; j++){
 			markPixel(i, j);    // Tar emot X, Y
 		}
 	}
-
 }
 
 
 void drawTopLine(int TopLineX, int TopLineY){
-
 	for(i = 0; i < 128; i++){
 		for(j = 0; j < 1; j++){
 		markPixel(TopLineX+i, j+TopLineY);    // Tar emot X, Y
@@ -646,10 +332,9 @@ void drawTopLine(int TopLineX, int TopLineY){
 
 
 void drawBottomLine(int BottomLineX, int BottomLineY){
-
-for(i = 0; i < 128; i++){
-	for(j = 0; j < 1; j++){
-		markPixel(BottomLineX+i, j+BottomLineY);    // Tar emot X, Y
+	for(i = 0; i < 128; i++){
+		for(j = 0; j < 1; j++){
+			markPixel(BottomLineX+i, j+BottomLineY);    // Tar emot X, Y
 	}
 }
 }
@@ -657,19 +342,11 @@ for(i = 0; i < 128; i++){
 void drawTube1(int Tube1X, int Tube1Y, int randomNum){
 
 //Ska göras random
-
-
-
-
-	for(i = 0; i <= randomNum; i++){
+for(i = 0; i <= randomNum; i++){
 		for(j = 0; j <= randomNum ; j++){
 			markPixel(Tube1X+i, j+Tube1Y);    // Tar emot X, Y
 		}
-
-
-
 	}
-
 }
 
 void drawTube2(int Tube2X, int Tube2Y){
