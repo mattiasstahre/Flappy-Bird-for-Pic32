@@ -38,12 +38,6 @@ int TacoY = 5;
 int Tube1X = 60;
 int Tube1Y = 25;
 
-int BottomLineX = 0;      //Statiska linjen längst ner
-int BottomLineY = 30;
-
-int TopLineX = 0;       //Statiska linjen längst upp
-int TopLineY = 0;
-
 int Tube2X = 160;
 int Tube2Y = 0;
 
@@ -163,9 +157,9 @@ rnum = 10;
 
 
 //drawGameOver (GameOverX, GameOverY);
-drawTopLine (TopLineX, TopLineY);
+drawTopLine ();
 
-drawBottomLine(BottomLineX, BottomLineY);
+drawBottomLine();
 drawTube1(Tube1X, Tube1Y, rnum);
 drawTube2(Tube2X, Tube2Y);
 
