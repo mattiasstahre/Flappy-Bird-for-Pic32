@@ -355,7 +355,7 @@ if(x<129 && y<64){
 
 			if(y==0){
 				int write = ~1;
-				if ((icon[x] ^ write) != 0){
+				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
 
@@ -365,7 +365,7 @@ if(x<129 && y<64){
 
 			if(y==1){
 				int write = ~2;
-				if ((icon[x] ^ write) != 0){
+				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
 
@@ -374,7 +374,7 @@ if(x<129 && y<64){
 
 			if(y==2){
 				int write = ~4;
-				if ((icon[x] ^ write) != 0){
+				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
 
@@ -383,7 +383,7 @@ if(x<129 && y<64){
 
 			if(y==3){
 				int write = ~8;
-				if ((icon[x] ^ write) != 0){
+				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
 
@@ -392,7 +392,7 @@ if(x<129 && y<64){
 
 			if(y==4){
 				int write = ~16;
-				if ((icon[x] ^ write) != 0){
+				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
 
@@ -401,7 +401,7 @@ if(x<129 && y<64){
 
 			if(y==5){
 				int write = ~32;
-				if ((icon[x] ^ write) != 0){
+				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
 
@@ -410,7 +410,7 @@ if(x<129 && y<64){
 
 			if(y==6){
 				int write = ~64;
-				if ((icon[x] ^ write) != 0){
+				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
 
@@ -419,7 +419,7 @@ if(x<129 && y<64){
 
 			if(y==7){
 				int write = ~128;
-				if ((icon[x] ^ write) != 0){
+				if ((~(icon[x] | write)) != 0){
 					gameState = 1;
 				}
 
@@ -638,7 +638,7 @@ void drawGameOver(void){
 void drawTopLine(int TopLineX, int TopLineY){
 
 	for(i = 0; i < 128; i++){
-		for(j = 0; j < 2; j++){
+		for(j = 0; j < 1; j++){
 		markPixel(TopLineX+i, j+TopLineY);    // Tar emot X, Y
 	}
 }
@@ -648,18 +648,26 @@ void drawTopLine(int TopLineX, int TopLineY){
 void drawBottomLine(int BottomLineX, int BottomLineY){
 
 for(i = 0; i < 128; i++){
-	for(j = 0; j < 2; j++){
+	for(j = 0; j < 1; j++){
 		markPixel(BottomLineX+i, j+BottomLineY);    // Tar emot X, Y
 	}
 }
 }
 
-void drawTube1(int Tube1X, int Tube1Y){
+void drawTube1(int Tube1X, int Tube1Y, int randomNum){
 
-	for(i = -3; i <= 3; i++){
-		for(j = -3; j <= 3 ; j++){
+//Ska göras random
+
+
+
+
+	for(i = 0; i <= randomNum; i++){
+		for(j = 0; j <= randomNum ; j++){
 			markPixel(Tube1X+i, j+Tube1Y);    // Tar emot X, Y
 		}
+
+
+
 	}
 
 }
