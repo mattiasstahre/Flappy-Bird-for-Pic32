@@ -101,7 +101,7 @@ TRISD = 0xfe0;
 void labwork( void )
 {
 
-rnum = random();
+rnum = 3;
 
 
   if (gameState == 1){
