@@ -15,7 +15,6 @@
 #include "mipslab.h"  /* Declatations for these labs */
 #include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 #define PI 3.14159265
 
@@ -24,7 +23,6 @@
 
 
 // prime = nextprime( prime );
-
 
 
 
@@ -95,10 +93,7 @@ TRISD = 0xfe0;
 void labwork( void )
 {
 
-
-
-
-  if (gameState == 1){
+  if (gameState == 1){                    //Game over
 
     drawGameOver();
     display_image(0, icon);
@@ -109,6 +104,23 @@ void labwork( void )
     display_update();
     gameState = 0;
 
+}
+
+
+if (gameState == 2){                //Main Menu
+
+  while(gameState == 2){
+
+      countStart++;
+      //countStart++;
+      delay(10);
+
+      if(getbtns() == 4){
+        gameState = 0;
+
+      }
+
+    }
 
 }
 /*
@@ -150,7 +162,8 @@ void labwork( void )
   clearScreenMemory();
 
 
-rnum = 10;
+rnum = 5; //random(&countStart);
+
 
 
 
@@ -158,10 +171,12 @@ rnum = 10;
 
 //drawGameOver (GameOverX, GameOverY);
 drawTopLine ();
-
 drawBottomLine();
+
+
+
 drawTube1(Tube1X, Tube1Y, rnum);
-drawTube2(Tube2X, Tube2Y);
+// drawTube2(Tube2X, Tube2Y);
 
 
 drawTaco(TacoX, TacoY);
@@ -192,6 +207,7 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
       markPixel(GameOverX+i, j+GameOverY);    // Tar emot X, Y
     }
   }*/
+
 
 
 
@@ -231,6 +247,7 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
 
     if ( getbtns() == 4 ){
       mytime = ((mytime & (~0xf000)) |  (getsw() << 12));
+      gameState = 0;
       time2string( textstring, mytime);
     }
 

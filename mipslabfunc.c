@@ -134,25 +134,39 @@ void display_init(void) {
 	spi_send_recv(0xAF);
 }
 
+
+int random(unsigned int *seed){
+    *seed = *seed * 1103515245 + 12345;
+    return (*seed % ((unsigned int)30 + 1));
+		countStart++;
+}
+
 void markPixel (int x, int y){
 
 	// int gameState = 0;
 
-	if(x<129 && y<64){
-
 		if(y>= 8 && y<16){
 			y=y-8;
 			x = x +128;
+			if(x<129){
+				x= -1;
+			}
 		}
 
 		if(y>= 16 && y<24){
 			y=y-16;
 			x = x +256;
+			if(x<257){
+				x= -1;
+			}
 		}
 
 		if(y>= 24 && y<32){
 			y=y-24;
 			x = x +384;
+			if(x<385){
+				x= -1;
+			}
 		}
 
 				if(y==0){
@@ -195,7 +209,7 @@ void markPixel (int x, int y){
 					icon[x] = icon[x] & write;
 					}
 			}
-}
+
 
 
 void markTaco (int x, int y){

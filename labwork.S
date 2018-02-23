@@ -14,6 +14,7 @@
 .global hexasc
 .global printDing
 .global finalend
+.global randomAsm
 .data
 .text
 
@@ -233,3 +234,15 @@ finalend:
 
 	jr $ra
 	nop
+
+
+
+
+  randomAsm:
+
+  li	$v0, 41		# get time in milliseconds (as a 64-bit value)
+  syscall
+
+  move	$v0, $a0	# save the lower 32-bits of time
+
+  jr $ra

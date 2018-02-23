@@ -10,7 +10,9 @@
 
 char textbuffer[4][16];
 
-int gameState = 0;
+int gameState = 2;
+
+extern int countStart = 0;
 
 const uint8_t const font[] = {
 	0, 0, 0, 0, 0, 0, 0, 0,

@@ -43,6 +43,7 @@ extern  uint8_t  icon[128*4];
 extern char textbuffer[4][16];
 
 extern gameState;
+extern countStart;
 
 /* Declare functions written by students.
    Note: Since we declare these functions here,
