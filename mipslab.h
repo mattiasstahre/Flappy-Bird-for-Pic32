@@ -44,6 +44,13 @@ extern char textbuffer[4][16];
 
 extern gameState;
 extern countStart;
+extern GravConst;
+
+int extern TacoX;       //Tacon som flyger
+int extern TacoY;
+
+int extern Tube1X;
+int extern Tube1Y;
 
 /* Declare functions written by students.
    Note: Since we declare these functions here,
