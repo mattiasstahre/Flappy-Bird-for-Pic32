@@ -33,51 +33,51 @@ int j;
 void MainMenuFade (void) {
 
 
+	display_string(2, "   Flappy Taco");
+	display_update();
+	delay(50);
 	display_string(2, "    Flappy Taco");
 	display_update();
-	delay(75);
-	display_string(2, "     Flappy Taco");
+	delay(50);
+	display_string(2, "      Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "       Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "        Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "         Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "          Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "           Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "            Flappy Taco");
 	display_update();
-	delay(75);
-	display_string(2, "             Flappy Taco");
+	delay(50);
+	display_string(2, "              Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "               Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "                Flappy Taco");
 	display_update();
-	delay(75);
+	delay(50);
 	display_string(2, "                 Flappy Taco");
 	display_update();
-	delay(75);
-	display_string(2, "                  Flappy Taco");
+	delay(50);
+	display_string(2, "                   Flappy Taco");
 	display_update();
-	delay(75);
-	display_string(2, "                    Flappy Taco");
+	delay(50);
+	display_string(2, "                     Flappy Taco");
 	display_update();
-	delay(75);
-	display_string(2, "                      Flappy Taco");
-	display_update();
-	delay(75);
+	delay(50);
 
 
 	delay(500);
@@ -90,19 +90,19 @@ void MainMenuFade (void) {
 void StartCountDown (void) {
 
 
-	        display_string(2, "      Three");
+	        display_string(2, "     Three");
 	        display_update();
 	        delay( 1000 );
 
-	        display_string(2, "       Two");
+	        display_string(2, "      Two");
 	        display_update();
 	        delay( 1000 );
 
-	        display_string(2, "       One");
+	        display_string(2, "      One");
 	        display_update();
 	        delay( 1000);
 
-	        display_string(2, "       Go");
+	        display_string(2, "      Go");
 	        display_update();
 	        delay( 2000 );
 

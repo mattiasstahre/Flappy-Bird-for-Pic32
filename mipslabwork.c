@@ -123,7 +123,7 @@ if (gameState == 2){                //Main Menu
   while(gameState == 2){
       countStart++;
       delay(10);
-      display_string(2, "   Flappy Taco");
+      display_string(2, "  Flappy Taco");
       display_update();
 
       if(getbtns() == 4){
