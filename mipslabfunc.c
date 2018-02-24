@@ -30,40 +30,82 @@ int j;
 
 
 
+void MainMenuFade (void) {
+
+
+	display_string(2, "    Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "     Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "       Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "        Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "         Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "          Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "           Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "            Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "             Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "               Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "                Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "                 Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "                  Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "                    Flappy Taco");
+	display_update();
+	delay(75);
+	display_string(2, "                      Flappy Taco");
+	display_update();
+	delay(75);
+
+
+	delay(500);
+
+
+
+}
+
+
 void StartCountDown (void) {
 
-	display_string(0, "");
-	        display_string(1, "      Three");
-	        display_string(2, "");
-	        display_string(3, "");
+
+	        display_string(2, "      Three");
 	        display_update();
 	        delay( 1000 );
 
-	        display_string(0, "");
-	        display_string(1, "       Two");
-	        display_string(2, "");
-	        display_string(3, "");
+	        display_string(2, "       Two");
 	        display_update();
 	        delay( 1000 );
 
-	        display_string(0, "");
-	        display_string(1, "       One");
-	        display_string(2, "");
-	        display_string(3, "");
+	        display_string(2, "       One");
 	        display_update();
 	        delay( 1000);
 
-	        display_string(0, "");
-	        display_string(1, "   Nu kör vi");
-	        display_string(2, "");
-	        display_string(3, "");
+	        display_string(2, "       Go");
 	        display_update();
 	        delay( 2000 );
 
-	        display_string(0, "");
-	        display_string(1, "");
-	        display_string(2, "");
-	        display_string(3, "");
 	        display_update();
 
 					gameState = 0;

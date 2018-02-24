@@ -16,11 +16,8 @@
 #include <math.h>
 #include <stdio.h>
 
-#define PI 3.14159265
-
 
 //Alla våra objekt nedan
-
 
 // prime = nextprime( prime );
 
@@ -67,7 +64,6 @@ char textstring[] = "text, more text, and even more text!";
 volatile int* initPORTE = (volatile int*) 0xbf886110;
 
 
-
 /* Interrupt Service Routine */
 void user_isr( void )
 {
@@ -77,7 +73,6 @@ void user_isr( void )
 /* Lab-specific initialization goes here */
 void labinit( void )
 {
-
 // Initiera portE, TRISE
 //Generellt TRISx
 //7:0 LSB as output
@@ -86,17 +81,10 @@ void labinit( void )
 // Initiera TRISE så att det är output.
 volatile int* initTRISE = (volatile int*) 0xbf886100;
 *initTRISE = ~0xff;
-
 // PORTE sätts till 0 vid initiering.
 *initPORTE = 0;
-
 //Initiera TRISE så att det är input.
-
 TRISD = 0xfe0;
-
-
-
-
 
   return;
 }
@@ -105,13 +93,25 @@ TRISD = 0xfe0;
 void labwork( void )
 {
 
+/*
+while (gameState == 0) {
+time2string( textstring, 0x5957 );
+display_update();
+tick( &mytime );
+}
+*/
+
+
   if (gameState == 1){                    //Game over
+
+
 
     drawGameOver();
     display_image(0, icon);
     delay(2000);
-    TacoX = 15;       //Tacon som flyger
+    TacoX = 15;       //Resetta tacons position
     TacoY = 7;
+
 
     display_update();
     gameState = 0;
@@ -120,21 +120,20 @@ void labwork( void )
 
 
 if (gameState == 2){                //Main Menu
-
-StartCountDown();
   while(gameState == 2){
-
       countStart++;
-      //countStart++;
       delay(10);
+      display_string(2, "   Flappy Taco");
+      display_update();
 
       if(getbtns() == 4){
-        //gameState = 0;
+        MainMenuFade();
+        StartCountDown();
+
+        gameState = 0;
 
       }
-
     }
-
 }
 /*
   switch (gameState){
@@ -241,6 +240,9 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
   //display_update();
   tick( &mytime );
 
+
+                            //Game speed:
+
   if (getsw() == 1){      // //Om switch längst till vänster är nertryckt
     delay(200);
   }
@@ -263,32 +265,18 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
 
   }
 
-
-  time2string( textstring, mytime );  // mytime är hex t ex 0x5957
-    // nollställer rätt bitar ex 8:5 i mytime. Vi lägger på värdet från getsw i dem bitarna.
+//  time2string( textstring, mytime );  // mytime är hex t ex 0x5957
 
     if ( getbtns() == 1){
-      //mytime = ((mytime & (~0xf0)) |  (getsw() << 4 ));
-      //time2string( textstring, mytime );
-      gameState = 2;
+      StartCountDown();
     }
 
     if ( getbtns() == 2 ){
-      //mytime = ((mytime & (~0xf00)) |  (getsw() << 8));
       TacoY -= 4;
-      //time2string( textstring, mytime );
     }
 
     if ( getbtns() == 4 ){
-      //mytime = ((mytime & (~0xf000)) |  (getsw() << 12));
-
-      //time2string( textstring, mytime);
     }
-
-
-
-
-
   // +1 varje gång labwork anropas.
   *initPORTE += 1;
 
