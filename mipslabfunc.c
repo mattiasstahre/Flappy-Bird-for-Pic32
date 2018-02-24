@@ -104,7 +104,7 @@ void StartCountDown (void) {
 
 	        display_string(2, "      Go");
 	        display_update();
-	        delay( 2000 );
+	        delay( 1000 );
 
 	        display_update();
 
@@ -426,7 +426,7 @@ void drawGameOver(void){
 
 
 void drawTopLine(void){
-	for(i = 0; i < 128; i++){
+	for(i = 0; i < 100; i++){
 		for(j = 0; j < 1; j++){
 		markPixel(i, j);    // Tar emot X, Y
 	}

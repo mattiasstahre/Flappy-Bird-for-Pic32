@@ -93,18 +93,8 @@ TRISD = 0xfe0;
 void labwork( void )
 {
 
-/*
-while (gameState == 0) {
-time2string( textstring, 0x5957 );
-display_update();
-tick( &mytime );
-}
-*/
-
 
   if (gameState == 1){                    //Game over
-
-
 
     drawGameOver();
     display_image(0, icon);
@@ -123,8 +113,12 @@ if (gameState == 2){                //Main Menu
   while(gameState == 2){
       countStart++;
       delay(10);
+
+
+      display_string(0, "             0000");
       display_string(2, "  Flappy Taco");
       display_update();
+
 
       if(getbtns() == 4){
         MainMenuFade();
@@ -183,6 +177,17 @@ rnum = 5; //random(&countStart);
 
 //drawGameOver (GameOverX, GameOverY);
 drawTopLine ();
+
+display_string(0, "");
+display_string(1, "");
+display_string(2, "");
+display_string(3, "");
+display_string(4, "");
+display_string(0, "             0000");
+display_update();
+
+
+
 drawBottomLine();
 
 
@@ -236,9 +241,9 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0)){
   Tube2Y = Tube2Y ;
 
 
-  display_string( 3, textstring );
+  //display_string( 3, textstring );
   //display_update();
-  tick( &mytime );
+  //tick( &mytime );
 
 
                             //Game speed:
