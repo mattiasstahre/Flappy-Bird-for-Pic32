@@ -46,8 +46,8 @@ for(int i=0; i < 6; i++){
 
 int Tube1Free = 0;
 
-int Tube2X = 160;
-int Tube2Y = 0;
+int Tube2X = 100;
+int Tube2Y = 10;
 
 //int GameOverX = 0;
 //int GameOverY = 0;
@@ -97,7 +97,8 @@ void labwork( void )
 {
 
 
-gameScore();
+
+  gameScore();
 
   if (gameState == 1){                    //1 = Game over
 
@@ -137,34 +138,10 @@ if (gameState == 2){                //2 = Main Menu/Start Screen
         MainMenuFade();           //Animation till höger av Flappy Taco
         StartCountDown();         //Kör 3,2,1,go på skärmen
 
-
-
-        gameState = 0;
-
       }
     }
 }
-/*
-  switch (gameState){
-    case 0:
-    break;
 
-    case 1:
-    while(0){
-
-      drawGameOver();
-
-    }
-    break;
-
-    case 2:
-    break;
-
-    default:
-    break;
-  }
-
-  */
 
 
   //display_string( 12, itoaconv( score ) );
@@ -176,35 +153,28 @@ if (gameState == 2){                //2 = Main Menu/Start Screen
   TacoY += 1;
 
 
-  //Game over
+// WAIT
 
-  // Emulerar position för objekt.
-
+  delay(10);
   clearScreenMemory();
-
-
-rnum = 8; //random(&countStart);
-
-
-
-
-
 
 //drawGameOver (GameOverX, GameOverY);
 drawTopLine ();
 
 drawBottomLine();
 
+for(i =0 ; i<= 15; i = i + 2){
+  drawObjectTube(objectPos[i], objectPos[i+1]);
+  objectPos[i]= objectPos[i]-1;
+}
 
-
-drawTube1(Tube1X, Tube1Y, rnum);
-
-// drawTube2(Tube2X, Tube2Y);
-
+// 0 2 4 6
 
 drawTaco(TacoX, TacoY);
 
-  display_image(0, icon);
+display_image(0, icon);
+
+
 
 
   TacoX = TacoX;

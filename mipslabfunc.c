@@ -160,19 +160,19 @@ void StartCountDown (void) {
 
 	        display_string(2, "     Three");
 	        display_update();
-	        delay( 1000 );
+	        delay( 200 );
 
 	        display_string(2, "      Two");
 	        display_update();
-	        delay( 1000 );
+	        delay( 200 );
 
 	        display_string(2, "      One");
 	        display_update();
-	        delay( 1000);
+	        delay( 200);
 
 	        display_string(2, "      Go");
 	        display_update();
-	        delay( 1000 );
+	        delay( 200 );
 
 	        display_update();
 
@@ -301,11 +301,21 @@ int random(unsigned int *seed){
 void markPixel (int x, int y){
 
 	// int gameState = 0;
+	if(y<0 | x<0){
+		x= -1;
+		y=-1;
+	}
+
+	if(x>127 | y > 32){
+		x= -1;
+		y=-1;
+	}
+
 
 		if(y>= 8 && y<16){
 			y=y-8;
 			x = x +128;
-			if(x<129){
+			if(x<129 | x>257){
 				x= -1;
 			}
 		}
@@ -313,7 +323,7 @@ void markPixel (int x, int y){
 		if(y>= 16 && y<24){
 			y=y-16;
 			x = x +256;
-			if(x<257){
+			if(x<257 | x>384){
 				x= -1;
 			}
 		}
@@ -321,7 +331,7 @@ void markPixel (int x, int y){
 		if(y>= 24 && y<32){
 			y=y-24;
 			x = x +384;
-			if(x<385){
+			if(x<384 | x>512){
 				x= -1;
 			}
 		}
@@ -466,6 +476,19 @@ void clearScreenMemory (void){
 }
 
 
+void drawObjectTube(int x, int y){
+
+//Ska göras random
+for(i = 0; i < 60; i++){
+		for(j = 0; j < 5 ; j++){
+			if(tubes[(5*i)+j] == 1){
+			markPixel(x+j, y+i);    // Tar emot X, Y
+		}
+		}
+	}
+}
+
+
 void drawTaco(int TacoX, int TacoY){
 	  for (i = -1; i <= 1; i++){
 	      markTaco(TacoX+i, TacoY-2);
@@ -485,6 +508,7 @@ void drawTaco(int TacoX, int TacoY){
 
 
 void drawGameOver(int TacoX, int TacoY){
+
 
 for(i = 6; i <11 ; i++){
 	markPixel(TacoX+i, TacoY+i);
