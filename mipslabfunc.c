@@ -160,19 +160,19 @@ void StartCountDown (void) {
 
 	        display_string(2, "     Three");
 	        display_update();
-	        delay( 200 );
+	        delay( 1000 );
 
 	        display_string(2, "      Two");
 	        display_update();
-	        delay( 200 );
+	        delay( 1000 );
 
 	        display_string(2, "      One");
 	        display_update();
-	        delay( 200);
+	        delay( 1000);
 
 	        display_string(2, "      Go");
 	        display_update();
-	        delay( 200 );
+	        delay( 1000 );
 
 	        display_update();
 
