@@ -44,10 +44,18 @@ void resetGameField (void){
 
 void MainMenuFade (void) {
 
+int i;
 
-	display_string(2, "   Flappy Taco");
+for(i = 0; i < 20; i++){
+	display_string(2, i, "Flappy Taco");
 	display_update();
 	delay(35);
+}
+
+delay(500);
+
+/*
+
 	display_string(2, "    Flappy Taco");
 	display_update();
 	delay(35);
@@ -91,8 +99,10 @@ void MainMenuFade (void) {
 	display_update();
 	delay(35);
 
+*/
 
-	delay(500);
+
+
 
 
 
@@ -102,19 +112,20 @@ void MainMenuFade (void) {
 void StartCountDown (void) {
 
 
-	        display_string(2, "     Three");
+
+	        display_string(2, 5,"Three");
 	        display_update();
 	        delay( 1000 );
 
-	        display_string(2, "      Two");
+	        display_string(2,6,"Two");
 	        display_update();
 	        delay( 1000 );
 
-	        display_string(2, "      One");
+	        display_string(2, 6,"One");
 	        display_update();
 	        delay( 1000);
 
-	        display_string(2, "      Go");
+	        display_string(2, 6,"Go");
 	        display_update();
 	        delay( 1000 );
 
@@ -191,8 +202,8 @@ void tick( unsigned int * timep )
 */
 void display_debug( volatile int * const addr )
 {
-  display_string( 1, "Addr" );
-  display_string( 2, "Data" );
+  display_string( 1, 0, "Addr" );
+  display_string( 2, 0, "Data" );
   num32asc( &textbuffer[1][6], (int) addr );
   num32asc( &textbuffer[2][6], *addr );
   display_update();
@@ -529,14 +540,20 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0){
 }
 
 
-void display_string(int line, char *s) {
+void display_string(int line, int k, char *s) {
 	int i;
 	if(line < 0 || line >= 4)
 		return;
 	if(!s)
 		return;
 
-	for(i = 0; i < 16; i++)
+int l;
+	for(l = 0; l < k; l++){
+		textbuffer[line][i] = ' ';
+
+	}
+
+	for(i = k+0; i < k+16; i++)
 		if(*s) {
 			textbuffer[line][i] = *s;
 			s++;

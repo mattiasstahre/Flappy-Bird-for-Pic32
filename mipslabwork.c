@@ -10,6 +10,9 @@
 
    For copyright and licensing, see file COPYING */
 
+  // make install TTYDEV=/dev/cu.usbserial-AJV9JY30
+
+
 #include <stdint.h>   /* Declarations of uint_32 and the like */
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "mipslab.h"  /* Declatations for these labs */
@@ -115,8 +118,8 @@ if (gameState == 2){                //Main Menu/Start Screen
       delay(10);
 
 
-      display_string(0, "             0000");
-      display_string(2, "  Flappy Taco");
+      display_string(0, 15, "0000");
+      display_string(2, 2, "Flappy Taco");
       display_update();
 
 
@@ -152,7 +155,7 @@ if (gameState == 2){                //Main Menu/Start Screen
   */
 
 
-  display_string( 12, itoaconv( score ) );
+  //display_string( 12, itoaconv( score ) );
 
   int i;
   int j;
@@ -178,12 +181,12 @@ rnum = 8; //random(&countStart);
 //drawGameOver (GameOverX, GameOverY);
 drawTopLine ();
 
-display_string(0, "");            // "" Behövs för att resna skrärmen av tidigare display_string
-display_string(1, "");            //0, 1, 2, behövs för de olika raderna. 0 är raden högst upp
-display_string(2, "");
-display_string(3, "");
-display_string(4, "");
-display_string(0, "             0000");
+display_string(0,0, "");            // "" Behövs för att resna skrärmen av tidigare display_string
+display_string(1,0, "");            //0, 1, 2, behövs för de olika raderna. 0 är raden högst upp
+display_string(2,0, "");
+display_string(3,0, "");
+display_string(4,0, "");
+display_string(0, 13, "0000");
 display_update();
 
 
