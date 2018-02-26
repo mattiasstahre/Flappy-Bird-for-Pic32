@@ -12,6 +12,8 @@ char textbuffer[4][16];
 
 int gameState = 2;
 
+int GravConst = 0;
+
 extern int countStart = 0;
 
 const uint8_t const font[] = {

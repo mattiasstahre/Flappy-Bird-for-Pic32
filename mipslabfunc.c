@@ -30,6 +30,107 @@ int j;
 
 
 
+void resetGameField (void){
+
+	TacoX = 15;       //Resetta tacons position
+	TacoY = 7;
+
+	Tube1X = 60;     //Resetta rörets position
+	Tube1Y = 25;
+
+}
+
+
+
+void MainMenuFade (void) {
+
+
+	display_string(2, "   Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "    Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "      Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "       Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "        Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "         Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "          Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "           Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "            Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "              Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "               Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "                Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "                 Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "                   Flappy Taco");
+	display_update();
+	delay(35);
+	display_string(2, "                     Flappy Taco");
+	display_update();
+	delay(35);
+
+
+	delay(500);
+
+
+
+}
+
+
+void StartCountDown (void) {
+
+
+	        display_string(2, "     Three");
+	        display_update();
+	        delay( 1000 );
+
+	        display_string(2, "      Two");
+	        display_update();
+	        delay( 1000 );
+
+	        display_string(2, "      One");
+	        display_update();
+	        delay( 1000);
+
+	        display_string(2, "      Go");
+	        display_update();
+	        delay( 1000 );
+
+	        display_update();
+
+					gameState = 0;
+
+}
+
+
+
+
+
+
+
+
 /* quicksleep:
    A simple function to create a small delay.
    Very inefficient use of computing resources,
@@ -327,17 +428,40 @@ void drawTaco(int TacoX, int TacoY){
 
 
 
-void drawGameOver(void){
+void drawGameOver(int TacoX, int TacoY){
+
+for(i = 6; i <11 ; i++){
+	markPixel(TacoX+i, TacoY+i);
+	markPixel(TacoX+i, TacoY);
+
+
+	markPixel(TacoX-i, TacoY+i);
+	markPixel(TacoX-i, TacoY);
+
+	markPixel(TacoX+i, TacoY-i);
+	markPixel(TacoX, TacoY+i);
+
+	markPixel(TacoX-i, TacoY-i);
+	markPixel(TacoX, TacoY-i);
+
+	display_image(0, icon);
+	//display_update();
+	//delay(500);
+}
+
+/*
 	for(i = 0; i < 128; i++){
 		for(j = 0; j < 32; j++){
 			markPixel(i, j);    // Tar emot X, Y
 		}
 	}
+
+	*/
 }
 
 
 void drawTopLine(void){
-	for(i = 0; i < 128; i++){
+	for(i = 0; i < 100; i++){
 		for(j = 0; j < 1; j++){
 		markPixel(i, j);    // Tar emot X, Y
 	}
@@ -380,14 +504,14 @@ int a = 0;
 
 if ((Tube1X -TacoX) <= 0 && (TacoY - Tube1Y) <= 0) {
     if ((Tube1X -TacoX) <= -3 && (TacoY - Tube1Y) <= -3) {
-        drawGameOver();
+        drawGameOver(TacoX, TacoY);
 				a = 1;
     }
   }
 
 if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0){
     if ((Tube1X -TacoX) <= 3 && (TacoY - Tube1Y) <= 3) {
-        drawGameOver();
+        drawGameOver(TacoX, TacoY);
 				a = 1;
       }
     }
@@ -395,7 +519,7 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0){
 		if (TacoY>=32 | TacoY<=0) {     //Om tacon går utanför översta eller understa
 																		//linjen --> Game Over
 			TacoY = 33;
-			drawGameOver();
+			drawGameOver(TacoX, TacoY);
 			a = 1;
 			// CHANGE STATE OF GAME
 		}
