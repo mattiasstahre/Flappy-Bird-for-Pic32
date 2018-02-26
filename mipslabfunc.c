@@ -28,7 +28,63 @@ static void num32asc( char * s, int );
 int i;
 int j;
 
+void gameScoreZero (void){
 
+gameScore0 = 0;
+gameScore1 = 0;
+gameScore2 = 0;
+gameScore3 = 0;
+
+}
+
+void updateGameScore(void){
+	 s[0] = 32;												//32 = Mellanslag i ASCII
+	 s[1] = 32;
+	 s[2] = 32;
+	 s[3] = 32;
+
+	 s[4] = gameScore3 + '0';
+	 s[5] = gameScore2 + '0';
+	 s[6] = gameScore1 + '0';
+	 s[7] = gameScore0 + '0';
+}
+
+
+void gameScore (void) {
+
+score++;
+
+  if (score == 5){
+      gameScore0++;
+      score = 0;
+    }
+
+            if (gameScore0 == 9){
+              gameScore0 = 0;
+              gameScore1++;
+            }
+            if (gameScore1 == 9){
+              gameScore1 = 0;
+              gameScore2++;
+            }
+            if (gameScore2 == 9){
+              gameScore2 = 0;
+              gameScore3++;
+            }
+            if (gameScore3 == 9){
+              gameScore3 = 0;
+            }
+
+}
+
+
+void display_string_clear (void) {
+
+	int i;
+	for (i = 0; i < 4; i++){
+		display_string(i, "");            // "" Behövs för att resna skrärmen av tidigare display_string
+	}
+}
 
 void resetGameField (void){
 
@@ -446,7 +502,7 @@ for(i = 6; i <11 ; i++){
 
 	display_image(0, icon);
 	//display_update();
-	//delay(500);
+	delay(150);
 }
 
 /*
@@ -461,7 +517,7 @@ for(i = 6; i <11 ; i++){
 
 
 void drawTopLine(void){
-	for(i = 0; i < 100; i++){
+	for(i = 0; i < 128; i++){
 		for(j = 0; j < 1; j++){
 		markPixel(i, j);    // Tar emot X, Y
 	}

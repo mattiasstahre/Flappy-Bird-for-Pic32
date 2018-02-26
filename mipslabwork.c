@@ -26,7 +26,7 @@
 
 int mytime = 0x5957;
 
-int score = 12345;
+
 
 int TacoX = 15;       //Tacon som flyger
 int TacoY = 5;
@@ -53,6 +53,8 @@ int Tube2Y = 0;
 //int GameOverY = 0;
 
 int rnum;
+
+
 
 
 
@@ -95,28 +97,38 @@ void labwork( void )
 {
 
 
-  if (gameState == 1){                    //Game over
+gameScore();
+
+  if (gameState == 1){                    //1 = Game over
 
     drawGameOver(TacoX, TacoY);
     display_image(0, icon);
     delay(2000);
 
-    resetGameField();             //Ändrar tillbaka Taco och Tube x- och y-positioner
+    display_string_clear();
 
+    updateGameScore();
 
+    display_string_clear();
+    display_string(1, "  Your score:");
+    display_string(2, s);
     display_update();
+
+    delay(2000);
+
+    resetGameField();             //Ändrar tillbaka Taco och Tube x- och y-positioner
+    display_update();
+    gameScoreZero();
     gameState = 0;
 
 }
 
 
-if (gameState == 2){                //Main Menu/Start Screen
+if (gameState == 2){                //2 = Main Menu/Start Screen
   while(gameState == 2){
       countStart++;
+
       delay(10);
-
-
-      display_string(0, "             0000");
       display_string(2, "  Flappy Taco");
       display_update();
 
@@ -124,6 +136,8 @@ if (gameState == 2){                //Main Menu/Start Screen
       if(getbtns() == 4){
         MainMenuFade();           //Animation till höger av Flappy Taco
         StartCountDown();         //Kör 3,2,1,go på skärmen
+
+
 
         gameState = 0;
 
@@ -153,7 +167,7 @@ if (gameState == 2){                //Main Menu/Start Screen
   */
 
 
-  display_string( 12, itoaconv( score ) );
+  //display_string( 12, itoaconv( score ) );
 
   int i;
   int j;
@@ -178,16 +192,6 @@ rnum = 8; //random(&countStart);
 
 //drawGameOver (GameOverX, GameOverY);
 drawTopLine ();
-
-display_string(0, "");            // "" Behövs för att resna skrärmen av tidigare display_string
-display_string(1, "");            //0, 1, 2, behövs för de olika raderna. 0 är raden högst upp
-display_string(2, "");
-display_string(3, "");
-display_string(4, "");
-display_string(0, "             0000");
-display_update();
-
-
 
 drawBottomLine();
 

@@ -9,10 +9,17 @@
 #include "mipslab.h"  /* Declatations for these labs */
 
 char textbuffer[4][16];
+char s[20];
 
 int gameState = 2;
 
 int GravConst = 0;
+
+int score = 0;
+int gameScore0  = 0;
+int gameScore1  = 0;
+int gameScore2  = 0;
+int gameScore3  = 0;
 
 extern int countStart = 0;
 

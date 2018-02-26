@@ -41,16 +41,25 @@ extern const uint8_t const font[128*8];
 extern  uint8_t  icon[128*4];
 /* Declare text buffer for display output */
 extern char textbuffer[4][16];
+extern char s[20];
 
 extern gameState;
 extern countStart;
 extern GravConst;
+
 
 int extern TacoX;       //Tacon som flyger
 int extern TacoY;
 
 int extern Tube1X;
 int extern Tube1Y;
+
+
+extern score;
+extern gameScore0;
+extern gameScore1;
+extern gameScore2;
+extern gameScore3;
 
 /* Declare functions written by students.
    Note: Since we declare these functions here,
