@@ -18,6 +18,10 @@
 
 // test
 
+// make install TTYDEV=/dev/cu.usbserial-AJV9JY30
+
+
+
 //Alla våra objekt nedan
 
 // prime = nextprime( prime );
@@ -95,29 +99,31 @@ TRISD = 0xfe0;
 /* This function is called repetitively from the main program */
 void labwork( void )
 {
-
-
+  int i;
+  int j;
 
   gameScore();
 
   if (gameState == 1){                    //1 = Game over
 
     drawGameOver(TacoX, TacoY);
-    display_image(0, icon);
     delay(2000);
-
-    display_string_clear();
 
     updateGameScore();
 
-    display_string_clear();
     display_string(1, "  Your score:");
     display_string(2, s);
     display_update();
-
     delay(2000);
 
+    for(i=0; i<32*2; i++){
+    objectPosLevel1[i]=objectPosLevel1Reset[i];
+  }
+
     resetGameField();             //Ändrar tillbaka Taco och Tube x- och y-positioner
+    clearScreenMemory();
+    display_image(0, icon);
+    display_string_clear();
     display_update();
     gameScoreZero();
     gameState = 0;
@@ -128,7 +134,7 @@ void labwork( void )
 if (gameState == 2){                //2 = Main Menu/Start Screen
   while(gameState == 2){
       countStart++;
-
+      display_string_clear();
       delay(10);
       display_string(2, "  Flappy Taco");
       display_update();
@@ -142,49 +148,26 @@ if (gameState == 2){                //2 = Main Menu/Start Screen
     }
 }
 
+//display_string( 12, itoaconv( score ) );
 
 
-  //display_string( 12, itoaconv( score ) );
 
-  int i;
-  int j;
-
-
-  TacoY += 1;
-
-
-// WAIT
-
-  delay(10);
-  clearScreenMemory();
+clearScreenMemory();
 
 //drawGameOver (GameOverX, GameOverY);
 drawTopLine ();
 
 drawBottomLine();
 
-for(i =0 ; i<= 15; i = i + 2){
-  drawObjectTube(objectPos[i], objectPos[i+1]);
-  objectPos[i]= objectPos[i]-1;
+for(i =0 ; i<= 32; i = i + 2){
+  drawObjectTube(objectPosLevel1[i], objectPosLevel1[i+1]);
+  objectPosLevel1[i]= objectPosLevel1[i]-1;
 }
 
 // 0 2 4 6
 
 drawTaco(TacoX, TacoY);
-
 display_image(0, icon);
-
-
-
-
-  TacoX = TacoX;
-  TacoY = TacoY;
-
-  Tube1X = Tube1X - 1 ;
-  Tube1Y = Tube1Y;
-
-  Tube2X = Tube2X - 1 ;
-  Tube2Y = Tube2Y;
 
 
   //display_string( 3, textstring );
@@ -212,27 +195,26 @@ display_image(0, icon);
 
   else
   {
-    delay(50);
-
+    delay(30);
   }
 
 //  time2string( textstring, mytime );  // mytime är hex t ex 0x5957
 
     if ( getbtns() == 1){
-      StartCountDown();
+      gameState = 2;
     }
 
     if ( getbtns() == 2 ){
-      TacoY -= 4;
+      TacoY -= 3;
     }
 
     if ( getbtns() == 4 ){
     }
 
+TacoY += 1;
 
+// Styr Led-lampor
   *initPORTE += 1;
-
-
 
 
 

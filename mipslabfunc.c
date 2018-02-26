@@ -38,15 +38,15 @@ gameScore3 = 0;
 }
 
 void updateGameScore(void){
-	 s[0] = 32;												//32 = Mellanslag i ASCII
-	 s[1] = 32;
-	 s[2] = 32;
-	 s[3] = 32;
 
-	 s[4] = gameScore3 + '0';
-	 s[5] = gameScore2 + '0';
-	 s[6] = gameScore1 + '0';
-	 s[7] = gameScore0 + '0';
+	 //32 = Mellanslag i ASCII
+	 for(i=0; i<5; i++){
+		 s[i] = 32;
+	 }
+	 s[5] = gameScore3 + '0';
+	 s[6] = gameScore2 + '0';
+	 s[7] = gameScore1 + '0';
+	 s[8] = gameScore0 + '0';
 }
 
 
@@ -54,12 +54,12 @@ void gameScore (void) {
 
 score++;
 
-  if (score == 5){
+  if (score == 2){
       gameScore0++;
       score = 0;
     }
 
-            if (gameScore0 == 9){
+						if (gameScore0 == 9){
               gameScore0 = 0;
               gameScore1++;
             }
@@ -91,15 +91,11 @@ void resetGameField (void){
 	TacoX = 15;       //Resetta tacons position
 	TacoY = 7;
 
-	Tube1X = 60;     //Resetta rörets position
-	Tube1Y = 25;
-
 }
 
 
 
 void MainMenuFade (void) {
-
 
 	display_string(2, "   Flappy Taco");
 	display_update();
@@ -179,13 +175,6 @@ void StartCountDown (void) {
 					gameState = 0;
 
 }
-
-
-
-
-
-
-
 
 /* quicksleep:
    A simple function to create a small delay.
@@ -311,7 +300,6 @@ void markPixel (int x, int y){
 		y=-1;
 	}
 
-
 		if(y>= 8 && y<16){
 			y=y-8;
 			x = x +128;
@@ -335,6 +323,7 @@ void markPixel (int x, int y){
 				x= -1;
 			}
 		}
+
 
 				if(y==0){
 					int write = ~1;
@@ -526,7 +515,7 @@ for(i = 6; i <11 ; i++){
 
 	display_image(0, icon);
 	//display_update();
-	delay(150);
+	delay(100);
 }
 
 /*
@@ -556,7 +545,7 @@ void drawBottomLine(void){
 	}
 }
 }
-
+/*
 void drawTube1(int Tube1X, int Tube1Y, int randomNum){
 
 //Ska göras random
@@ -576,7 +565,7 @@ void drawTube2(int Tube2X, int Tube2Y){
 	}
 }
 
-
+*/
 
 int crash (int Tube1X, int TacoX, int TacoY, int Tube1Y) {
 
