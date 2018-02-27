@@ -460,7 +460,20 @@ if(x<129 && y<64){
 		x = x +384;
 	}
 
+	// pow(2,i); // = 2^i
+/*
+for(i=0; i<8; i++){
 
+	if(y==i){
+		int write = ~(1<<i);
+		if ((~(icon[x] | write)) != 0){
+			gameState = 1;
+		}
+		icon[x] = icon[x] & write;
+		}
+	}
+
+*/
 			if(y==0){
 				int write = ~1;
 				if ((~(icon[x] | write)) != 0){
@@ -524,8 +537,15 @@ if(x<129 && y<64){
 				}
 				icon[x] = icon[x] & write;
 				}
+
 		}
+
+
+
+
 	}
+
+
 
 void clearScreenMemory (void){
 	int i = 0;
