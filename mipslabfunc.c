@@ -694,8 +694,12 @@ void display_score(int line, char s[4][20]) {
 		for(j = 0; j<4; j++){
 			for(i = 0; i < 20; i++){
 				//if(s[j][i]!= 32) {
-
+				if(s[j][i] == 48){
+					textbuffer[4-j][i] = 32;
+				}
+				else {
 					textbuffer[4-j][i] = s[j][i];
+				}
 					//s++;
 				//}
 		 		//else
