@@ -83,6 +83,8 @@ volatile int* initTRISE = (volatile int*) 0xbf886100;
 //Initiera TRISE så att det är input.
 TRISD = 0xfe0;
 
+
+
   return;
 }
 
