@@ -24,11 +24,7 @@
 
 // prime = nextprime( prime );
 
-
-
 int mytime = 0x5957;
-
-
 
 int TacoX = 15;       //Tacon som flyger
 int TacoY = 5;
@@ -55,10 +51,6 @@ int Tube2Y = 10;
 //int GameOverY = 0;
 
 int rnum;
-
-
-
-
 
 char textstring[] = "text, more text, and even more text!";
 
@@ -109,11 +101,14 @@ void labwork( void )
 
     updateGameScore();
 
-    display_string(1, "  Your score:");
-    display_string(2, s);
+     gameScoreSort();
+
+    display_string(0, "  High score:");
+    display_score(1, s);
     display_update();
     delay(2000);
 
+// Återställer alla objekt på banan
     for(i=0; i<32*2; i++){
     objectPosLevel1[i]=objectPosLevel1Reset[i];
   }

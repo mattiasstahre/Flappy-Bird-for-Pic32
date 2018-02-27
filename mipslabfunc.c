@@ -37,16 +37,48 @@ gameScore3 = 0;
 
 }
 
-void updateGameScore(void){
+void updateGameScore(int score){
+
 
 	 //32 = Mellanslag i ASCII
 	 for(i=0; i<5; i++){
-		 s[i] = 32;
+		 s[0][i] = 32;
 	 }
-	 s[5] = gameScore3 + '0';
-	 s[6] = gameScore2 + '0';
-	 s[7] = gameScore1 + '0';
-	 s[8] = gameScore0 + '0';
+	 s[0][4] = gameScore3 + '0';
+	 s[0][5] = gameScore2 + '0';
+	 s[0][6] = gameScore1 + '0';
+	 s[0][7] = gameScore0 + '0';
+}
+
+// tar emot först två rader som ska byta plats och sedan i vilken array.
+void gameScoreSortSwap(int a, int b, char s[4][20]){
+
+char temp;
+	for(i=0; i < 20; i++){
+		temp = s[a][i];
+		s[a][i] = s[b][i];
+		s[b][i] = temp;
+	}
+
+}
+
+void gameScoreSort(void){
+
+int washigher= 0;
+int k = 0;
+
+// Börja med att kolla om score är större än lägsta poäng.
+// I sånt fall skriv över den positionen.
+for(i=0; i < 20; i++){
+			if(s[0][i]>s[3][i]){
+				gameScoreSortSwap(0, 3, s);
+				i=21;
+			}
+			if(s[0][i]<s[3][i]){
+				i=21;
+			}
+	}
+
 }
 
 
@@ -611,6 +643,26 @@ void display_string(int line, char *s) {
 			s++;
 		} else
 			textbuffer[line][i] = ' ';
+}
+
+void display_score(int line, char s[4][20]) {
+	int i;
+
+	if(line < 0 || line >= 4)
+		return;
+	if(!s)
+		return;
+
+		for(j = 0; j<3; j++){
+			for(i = 0; i < 20; i++){
+				//if(s[j][i]!= 32) {
+					textbuffer[line+j][i] = s[j][i];
+					//s++;
+				//}
+		 		//else
+				//textbuffer[line+j][i] = ' ';
+			}
+		}
 }
 
 void display_image(int x, const uint8_t *data) {

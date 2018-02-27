@@ -44,7 +44,7 @@ extern int objectPosLevel1Reset[32*2];
 extern int objectPosLevel1[32*2];
 /* Declare text buffer for display output */
 extern char textbuffer[4][16];
-extern char s[20];
+extern char s[4][20];
 
 extern gameState;
 extern countStart;

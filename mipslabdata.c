@@ -9,7 +9,7 @@
 #include "mipslab.h"  /* Declatations for these labs */
 
 char textbuffer[4][16];
-char s[20];
+char s[4][20];
 extern uint8_t tubes[5*60];
 extern int objectPosLevel1[32*2];
 extern int objectPosLevel1Reset[32*2];
