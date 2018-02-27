@@ -20,8 +20,6 @@
 
 // make install TTYDEV=/dev/cu.usbserial-AJV9JY30
 
-
-
 //Alla våra objekt nedan
 
 // prime = nextprime( prime );
