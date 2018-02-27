@@ -62,22 +62,60 @@ char temp;
 
 }
 
+
 void gameScoreSort(void){
 
-int washigher= 0;
-int k = 0;
+
 
 // Börja med att kolla om score är större än lägsta poäng.
 // I sånt fall skriv över den positionen.
-for(i=0; i < 20; i++){
-			if(s[0][i]>s[3][i]){
-				gameScoreSortSwap(0, 3, s);
-				i=21;
-			}
-			if(s[0][i]<s[3][i]){
-				i=21;
-			}
-	}
+
+	if((compareTwoRowsHighScore(0, 3))){
+		gameScoreSortSwap(0, 3, s);
+		}
+/// Sortering, här man man anropa compareTwoRowsHighScore med två radnummer
+
+
+    int i, j, min_idx;
+		int n = 4;
+
+    // One by one move boundary of unsorted subarray
+    for (i = 0; i < n-1; i++)
+    {
+        // Find the minimum element in unsorted array
+        min_idx = i;
+        for (j = i+1; j < n; j++)
+          if (compareTwoRowsHighScore(j, min_idx))
+            min_idx = j;
+
+        // Swap the found minimum element with the first element
+        gameScoreSortSwap(min_idx, i, s);
+    }
+}
+
+
+int compareTwoRowsHighScore (int a, int b){			//Om A är mindre än B --> smaller = 1
+	int smaller = 1;
+
+	for(i=0; i < 20; i++){					// i = raden, A/B = kolumnen
+
+				if(s[a][i] == s[b][i]){
+					continue;
+				}
+
+				if(s[a][i]>s[b][i]){
+					smaller = 0;
+					break;
+				}
+				if(s[a][i]<s[b][i]){
+					break;
+				}
+
+
+
+		}
+
+	return smaller;
 
 }
 

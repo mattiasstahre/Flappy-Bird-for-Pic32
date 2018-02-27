@@ -100,8 +100,7 @@ void labwork( void )
     delay(2000);
 
     updateGameScore();
-
-     gameScoreSort();
+    gameScoreSort();
 
     display_string(0, "  High score:");
     display_score(1, s);
