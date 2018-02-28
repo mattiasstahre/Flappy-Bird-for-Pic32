@@ -2,6 +2,8 @@
    This file written 2015 by F Lundevall
    Some parts are original code written by Axel Isaksson
 
+	 This file modified 2017-02-28 by Mattias Stahre and Gustaf Halvardsson
+
    For copyright and licensing, see file COPYING */
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */
@@ -28,29 +30,28 @@ static void num32asc( char * s, int );
 int i;
 int j;
 
-void gameScoreZero (void){
+void gameScoreZero (void){																											// By Mattias
 
-gameScore0 = 0;
-gameScore1 = 0;
-gameScore2 = 0;
-gameScore3 = 0;
+	gameScore0 = 0;
+	gameScore1 = 0;
+	gameScore2 = 0;
+	gameScore3 = 0;
 
 }
 
-void updateGameScore(int score){
+void updateGameScore(int score){																								// By Mattias
 
-
-	 //32 = Mellanslag i ASCII
 	 for(i=0; i<5; i++){
-		 s[0][i] = 32;
+		 s[0][i] = 32;		//32 = Mellanslag i ASCII
 	 }
 	 s[0][4] = gameScore3 + '0';
 	 s[0][5] = gameScore2 + '0';
 	 s[0][6] = gameScore1 + '0';
 	 s[0][7] = gameScore0 + '0';
+
 }
 
-// tar emot först två rader som ska byta plats och sedan i vilken array.
+// tar emot först två rader som ska byta plats och sedan i vilken array.				// By Mattias
 void gameScoreSortSwap(int a, int b, char s[4][20]){
 
 char temp;
@@ -64,9 +65,6 @@ char temp;
 
 
 void gameScoreSort(void){
-
-
-
 // Börja med att kolla om score är större än lägsta poäng.
 // I sånt fall skriv över den positionen.
 
@@ -79,10 +77,8 @@ void gameScoreSort(void){
     int i, j, min_idx;
 		int n = 4;
 
-    // One by one move boundary of unsorted subarray
     for (i = 0; i < n-1; i++)
     {
-        // Find the minimum element in unsorted array
         min_idx = i;
         for (j = i+1; j < n; j++)
           if (compareTwoRowsHighScore(j, min_idx))
@@ -111,8 +107,6 @@ int compareTwoRowsHighScore (int a, int b){			//Om A är mindre än B --> smalle
 					break;
 				}
 
-
-
 		}
 
 	return smaller;
@@ -120,7 +114,7 @@ int compareTwoRowsHighScore (int a, int b){			//Om A är mindre än B --> smalle
 }
 
 
-void gameScore (void) {
+void gameScore (void) {																													// By Mattias
 
 score++;
 
@@ -162,7 +156,6 @@ void resetGameField (void){
 	TacoY = 7;
 
 }
-
 
 
 void MainMenuFade (void) {
@@ -222,7 +215,6 @@ void MainMenuFade (void) {
 
 
 void StartCountDown (void) {
-
 
 	        display_string(2, "     Three");
 	        display_update();
@@ -350,16 +342,8 @@ void display_init(void) {
 	spi_send_recv(0xAF);
 }
 
+void markPixel (int x, int y){																									// By Mattias
 
-int random(unsigned int *seed){
-    *seed = *seed * 1103515245 + 12345;
-    return (*seed % ((unsigned int)30 + 1));
-		countStart++;
-}
-
-void markPixel (int x, int y){
-
-	// int gameState = 0;
 	if(y<0 | x<0){
 		x= -1;
 		y=-1;
@@ -393,6 +377,8 @@ void markPixel (int x, int y){
 				x= -1;
 			}
 		}
+
+
 
 
 				if(y==0){
@@ -434,13 +420,13 @@ void markPixel (int x, int y){
 					int write = ~128;
 					icon[x] = icon[x] & write;
 					}
+
+
 			}
 
 
 
-void markTaco (int x, int y){
-
-// int gameState = 0;
+void markTaco (int x, int y){																										// By Mattias
 
 if(x<129 && y<64){
 
@@ -460,20 +446,6 @@ if(x<129 && y<64){
 		x = x +384;
 	}
 
-	// pow(2,i); // = 2^i
-/*
-for(i=0; i<8; i++){
-
-	if(y==i){
-		int write = ~(1<<i);
-		if ((~(icon[x] | write)) != 0){
-			gameState = 1;
-		}
-		icon[x] = icon[x] & write;
-		}
-	}
-
-*/
 			if(y==0){
 				int write = ~1;
 				if ((~(icon[x] | write)) != 0){
@@ -540,12 +512,7 @@ for(i=0; i<8; i++){
 
 		}
 
-
-
-
 	}
-
-
 
 void clearScreenMemory (void){
 	int i = 0;
@@ -555,9 +522,8 @@ void clearScreenMemory (void){
 }
 
 
-void drawObjectTube(int x, int y){
+void drawObjectTube(int x, int y){																							// By Mattias
 
-//Ska göras random
 for(i = 0; i < 60; i++){
 		for(j = 0; j < 5 ; j++){
 			if(tubes[(5*i)+j] == 1){
@@ -568,7 +534,7 @@ for(i = 0; i < 60; i++){
 }
 
 
-void drawTaco(int TacoX, int TacoY){
+void drawTaco(int TacoX, int TacoY){																						// By Mattias
 	  for (i = -1; i <= 1; i++){
 	      markTaco(TacoX+i, TacoY-2);
 	  }
@@ -585,14 +551,12 @@ void drawTaco(int TacoX, int TacoY){
 	}
 
 
-
+                                                                                  //START: Denna del kodades endast av Gustaf
 void drawGameOver(int TacoX, int TacoY){
-
 
 for(i = 6; i <11 ; i++){
 	markPixel(TacoX+i, TacoY+i);
 	markPixel(TacoX+i, TacoY);
-
 
 	markPixel(TacoX-i, TacoY+i);
 	markPixel(TacoX-i, TacoY);
@@ -604,19 +568,11 @@ for(i = 6; i <11 ; i++){
 	markPixel(TacoX, TacoY-i);
 
 	display_image(0, icon);
-	//display_update();
 	delay(100);
 }
 
-/*
-	for(i = 0; i < 128; i++){
-		for(j = 0; j < 32; j++){
-			markPixel(i, j);    // Tar emot X, Y
-		}
-	}
-
-	*/
 }
+                                                                                  //SLUT: Denna del kodades endast av Gustaf
 
 
 void drawTopLine(void){
@@ -635,27 +591,6 @@ void drawBottomLine(void){
 	}
 }
 }
-/*
-void drawTube1(int Tube1X, int Tube1Y, int randomNum){
-
-//Ska göras random
-for(i = 0; i <= randomNum; i++){
-		for(j = 0; j <= randomNum ; j++){
-			markPixel(Tube1X+i, j+Tube1Y);    // Tar emot X, Y
-		}
-	}
-}
-
-void drawTube2(int Tube2X, int Tube2Y){
-
-	for(i = -2; i < 3; i++){
-		for(j = -5; j < 5 ; j++){
-			markPixel(Tube2X+i, j+Tube2Y);    // Tar emot X, Y
-		}
-	}
-}
-
-*/
 
 int crash (int Tube1X, int TacoX, int TacoY, int Tube1Y) {
 
@@ -680,7 +615,6 @@ if ((Tube1X -TacoX) >= 0 && (TacoY - Tube1Y) >= 0){
 			TacoY = 33;
 			drawGameOver(TacoX, TacoY);
 			a = 1;
-			// CHANGE STATE OF GAME
 		}
 
 		return a;
@@ -703,7 +637,7 @@ void display_string(int line, char *s) {
 			textbuffer[line][i] = ' ';
 }
 
-void display_score(int line, char s[4][20]) {
+void display_score(int line, char s[4][20]) {																		// By Mattias
 	int i;
 	int k = 1;
 
@@ -715,7 +649,6 @@ void display_score(int line, char s[4][20]) {
 		for(j = 0; j<4; j++){
 			k = 1;
 			for(i = 0; i < 20; i++){
-				//if(s[j][i]!= 32) {
 				if(s[j][i] == 48 && k == 1){
 					textbuffer[4-j][i] = 32;
 				}
@@ -726,10 +659,7 @@ void display_score(int line, char s[4][20]) {
 				if (s[j][i] == 48 && k == 0){
 					textbuffer[4-j][i] = s[j][i];
 				}
-					//s++;
-				//}
-		 		//else
-				//textbuffer[line+j][i] = ' ';
+
 			}
 		}
 }
@@ -777,6 +707,7 @@ void display_update(void) {
 	}
 }
 
+/*
 /* Helper function, local to this file.
    Converts a number to hexadecimal ASCII digits. */
 static void num32asc( char * s, int n )

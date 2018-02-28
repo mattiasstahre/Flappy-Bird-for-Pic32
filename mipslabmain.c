@@ -5,6 +5,9 @@
 
    Latest update 2017-04-21 by F Lundevall
 
+
+	 This file was modified 2017-02-28 by Mattias Stahre and Gustaf Halvardsson
+
    For copyright and licensing, see file COPYING */
 
 #include <stdint.h>   /* Declarations of uint_32 and the like */

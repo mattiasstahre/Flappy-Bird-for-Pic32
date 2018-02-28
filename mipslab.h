@@ -48,7 +48,6 @@ extern char s[4][20];
 
 extern gameState;
 extern countStart;
-extern GravConst;
 
 
 int extern TacoX;       //Tacon som flyger

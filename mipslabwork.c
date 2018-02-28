@@ -6,7 +6,7 @@
    This file should be changed by YOU! So you must
    add comment(s) here with your name(s) and date(s):
 
-   This file modified 2017-04-31 by Ture Teknolog
+   This file modified 2017-02-28 by Mattias Stahre and Gustaf Halvardsson
 
    For copyright and licensing, see file COPYING */
 
@@ -16,48 +16,10 @@
 #include <math.h>
 #include <stdio.h>
 #define   TMR2PERIOD ((80000000 / 256) / 25 )  // = 31250 < 65 536 (=2^16)
-
-
-// test
-
-// make install TTYDEV=/dev/cu.usbserial-AJV9JY30
-
-//Alla våra objekt nedan
-
-// prime = nextprime( prime );
-
-int mytime = 0x5957;
-
 int TacoX = 15;       //Tacon som flyger
 int TacoY = 5;
 
-int Tube1X = 60;
-int Tube1Y = 25;
-
-
-/*
-for(int i=0; i < 6; i++){
-
-  checkIfFree(Tube1X, Tube1Y, Tube1Free);
-  generateObjekt(Tube[i*3]Free);
-}
-
-*/
-
-int Tube1Free = 0;
-
-int Tube2X = 100;
-int Tube2Y = 10;
-
-//int GameOverX = 0;
-//int GameOverY = 0;
-
-int rnum;
-
 char textstring[] = "text, more text, and even more text!";
-
-//#define TRISD PIC_32R (0xbf8860D0)
-
 
 // Initieras globalt
 volatile int* initPORTE = (volatile int*) 0xbf886110;
@@ -66,20 +28,16 @@ volatile int* initPORTE = (volatile int*) 0xbf886110;
 /* Interrupt Service Routine */
 void user_isr( void )
 {
+                                                                                // By Mattias
   IFSCLR(0) = 0x100;    // Nollställ interuptflaggan!
   InteruptFlag40ms = 1;
-  //Lägg counter här
-
   return;
 }
 
 /* Lab-specific initialization goes here */
 void labinit( void )
 {
-// Initiera portE, TRISE
-//Generellt TRISx
-//7:0 LSB as output
-//TRISE has address 0xbf886100
+
 
 // Initiera TRISE så att det är output.
 volatile int* initTRISE = (volatile int*) 0xbf886100;
@@ -89,43 +47,23 @@ volatile int* initTRISE = (volatile int*) 0xbf886100;
 //Initiera TRISE så att det är input.
 TRISD = 0xfe0;
 
-
-// Initiera timer 2 för timeouts 100ms Är en typ B timer
-
 T2CON = 0x70;          // 0111 0000 Vi sätter bit 6:4 till 111 prescale 1:256
                       // set prescaler at 1:1, internal clock source
 TMR2 = 0x0;           // Clear timer register
 PR2 = TMR2PERIOD;         // Load period register
-
 T2CONSET = 0x8000;         // Start timer
-
-
-
-  // Slår på interupts för timer 2.
-  // LÄS PÅ OM IPC OCH IEC!!!!!!!
-  // Använder pekare.
 
   int *IEC = 0xbf881060;
   int *IPC2 = 0xbf8810b0;
-
-
 
   *IEC = 0x100;     //Vi sätter bit #9 (index 8) se bild sid 90.
   // Interupt Priority Control
   // http://ww1.microchip.com/downloads/en/DeviceDoc/61143H.pdf Sid 90.
   // Bitar 4:2 sätter priotitet 0-7 där 0-3 är Subpriority.
 
-
   *IPC2 = *IPC2 | 0x10;   //Vi sätter prioriteret 4 genom att endast bit #5 (index 4)
 
-/*
-  IPC(2) = IPC(2) | 0x10;
-  // set bit no 8 to enable interupt
-  IEC(0) = 0x100;
-  // calling interupt from labwork.S
-*/
-  enable_interrupt();
-
+  enable_interrupt(); // Kör funktion i Vectors.S som slår på ie
 
   return;
 }
@@ -142,36 +80,30 @@ void labwork( void )
 
     drawGameOver(TacoX, TacoY);
     delay(2000);
-
-    updateGameScore();
-    gameScoreSort();
-
+    updateGameScore();        // Skriver Gamescore till Highscore array
+    gameScoreSort();          // sorterar Highscore
     display_string(0, "  High score:");
-    display_score(1, s);
+    display_score(1, s);      // Skriv ut Highscore
     display_update();
 
-    while( getbtns() != 4 ){
+    delay(2000);
 
-    }
-
-    display_string_clear();
-
-    StartCountDown();
-
-
+    //while( getbtns() != 4 ){}   // Väntar tills användaren trycker på knapp
+    display_string_clear();   // Rensar text från skärmen
+    StartCountDown();         // Animation som räknar ner.
 
 // Återställer alla objekt på banan
     for(i=0; i<64*2; i++){
-    objectPosLevel1[i]=objectPosLevel1Reset[i];
-  }
+      objectPosLevel1[i]=objectPosLevel1Reset[i];
+    }
 
     resetGameField();             //Ändrar tillbaka Taco och Tube x- och y-positioner
     clearScreenMemory();
     display_image(0, icon);
     display_string_clear();
     display_update();
-    gameScoreZero();
-    gameState = 0;
+    gameScoreZero();            // Nollställer gamescore
+    gameState = 0;              // Gamestate 0 = kör spelet
 
 }
 
@@ -193,19 +125,13 @@ if (gameState == 2){                //2 = Main Menu/Start Screen
     }
 }
 
-//display_string( 12, itoaconv( score ) );
-
-
-
 clearScreenMemory();
-
-//drawGameOver (GameOverX, GameOverY);
 drawTopLine ();
-
 drawBottomLine();
 
+                                                                                  //START: Denna del kodades endast av Gustaf
+// Flyttar alla tuber på skärmen
 for(i =0 ; i<= 64; i = i + 2){
-
 
   drawObjectTube(objectPosLevel1[i], objectPosLevel1[i+1]);   //i+1  = y-värdet
   objectPosLevel1[i]= objectPosLevel1[i]-1;     //Flyttar rören åt vänster
@@ -217,7 +143,7 @@ for(i =0 ; i<= 64; i = i + 2){
   if (getsw() == 4){    //Om switch nästlängst till vänster är nertryckt
   objectPosLevel1[i+1] = objectPosLevel1[i+1]+1;
   }
-  if (objectPosLevel1[i+1] == -80) {
+  if (objectPosLevel1[i+1] == -80) {          //Om tuber
     objectPosLevel1[i+1] = objectPosLevel1[i+1]+120;
   }
 
@@ -227,62 +153,28 @@ for(i =0 ; i<= 64; i = i + 2){
   }
 
 }
+                                                                                  //SLUT:
+// Flyttar taco nedåt (Gravitation)
 
-
-
-// 0 2 4 6
+TacoY += 1;
 
 drawTaco(TacoX, TacoY);
 display_image(0, icon);
 
 
-  //display_string( 3, textstring );
-  //display_update();
-  //tick( &mytime );
-/*
+// Kollar om någon knapp är nedtryckt.
 
-                            //Game speed: Tryck på en switch för att ändra delayen --> ändra hastigheten
-
-  if (getsw() == 1){      // //Om switch längst till vänster är nertryckt
-    delay(200);
-  }
-
-  if (getsw() == 2){
-    delay(35);
-  }
-
-  if (getsw() == 4){
-    delay(25);
-  }
-
-  if (getsw() == 8){    //Om switch längst till vänster är nertryckt
-    delay(15);
-  }
-
-  else
-  {
-    delay(30);
-  }
-  */
-
-//  time2string( textstring, mytime );  // mytime är hex t ex 0x5957
-
-    if ( getbtns() == 1){
+    if ( getbtns() == 1){     // Startar om spelet
       gameState = 2;
     }
 
-    if ( getbtns() == 2 ){
+    if ( getbtns() == 2 ){    // Taco rör sig uppåt.
       TacoY -= 3;
     }
 
     if ( getbtns() == 4 ){
     }
 
-TacoY += 1;
-
 // Styr Led-lampor
   *initPORTE += 1;
-
-
-
 }
