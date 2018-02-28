@@ -161,7 +161,7 @@ void labwork( void )
 
 
 // Återställer alla objekt på banan
-    for(i=0; i<32*2; i++){
+    for(i=0; i<64*2; i++){
     objectPosLevel1[i]=objectPosLevel1Reset[i];
   }
 
@@ -204,7 +204,7 @@ drawTopLine ();
 
 drawBottomLine();
 
-for(i =0 ; i<= 32; i = i + 2){
+for(i =0 ; i<= 64; i = i + 2){
 
 
   drawObjectTube(objectPosLevel1[i], objectPosLevel1[i+1]);   //i+1  = y-värdet

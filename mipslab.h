@@ -40,8 +40,8 @@ extern const uint8_t const font[128*8];
 /* Declare bitmap array containing icon */
 extern  uint8_t  icon[128*4];
 extern  uint8_t  tubes[5*60];
-extern int objectPosLevel1Reset[32*2];
-extern int objectPosLevel1[32*2];
+extern int objectPosLevel1Reset[64*2];
+extern int objectPosLevel1[64*2];
 /* Declare text buffer for display output */
 extern char textbuffer[4][16];
 extern char s[4][20];
