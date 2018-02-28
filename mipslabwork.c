@@ -149,7 +149,16 @@ void labwork( void )
     display_string(0, "  High score:");
     display_score(1, s);
     display_update();
-    delay(2000);
+
+    while( getbtns() != 4 ){
+
+    }
+
+    display_string_clear();
+
+    StartCountDown();
+
+
 
 // Återställer alla objekt på banan
     for(i=0; i<32*2; i++){
