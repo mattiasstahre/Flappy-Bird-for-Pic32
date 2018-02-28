@@ -705,6 +705,7 @@ void display_string(int line, char *s) {
 
 void display_score(int line, char s[4][20]) {
 	int i;
+	int k = 1;
 
 	if(line < 0 || line >= 4)
 		return;
@@ -712,12 +713,17 @@ void display_score(int line, char s[4][20]) {
 		return;
 
 		for(j = 0; j<4; j++){
+			k = 1;
 			for(i = 0; i < 20; i++){
 				//if(s[j][i]!= 32) {
-				if(s[j][i] == 48){
+				if(s[j][i] == 48 && k == 1){
 					textbuffer[4-j][i] = 32;
 				}
-				else {
+				if (s[j][i] != 48 && s[j][i] != 32){
+					textbuffer[4-j][i] = s[j][i];
+					k = 0;
+				}
+				if (s[j][i] == 48 && k == 0){
 					textbuffer[4-j][i] = s[j][i];
 				}
 					//s++;
