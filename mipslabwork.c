@@ -68,6 +68,8 @@ void user_isr( void )
 {
   IFSCLR(0) = 0x100;    // Nollställ interuptflaggan!
   InteruptFlag40ms = 1;
+  //Lägg counter här
+
   return;
 }
 
@@ -194,9 +196,30 @@ drawTopLine ();
 drawBottomLine();
 
 for(i =0 ; i<= 32; i = i + 2){
-  drawObjectTube(objectPosLevel1[i], objectPosLevel1[i+1]);
-  objectPosLevel1[i]= objectPosLevel1[i]-1;
+
+
+  drawObjectTube(objectPosLevel1[i], objectPosLevel1[i+1]);   //i+1  = y-värdet
+  objectPosLevel1[i]= objectPosLevel1[i]-1;     //Flyttar rören åt vänster
+
+  if (getsw() == 8){    //Om switch längst till vänster är nertryckt
+  objectPosLevel1[i+1] = objectPosLevel1[i+1]-1;
+  }
+
+  if (getsw() == 4){    //Om switch nästlängst till vänster är nertryckt
+  objectPosLevel1[i+1] = objectPosLevel1[i+1]+1;
+  }
+  if (objectPosLevel1[i+1] == -80) {
+    objectPosLevel1[i+1] = objectPosLevel1[i+1]+120;
+  }
+
+
+  if (objectPosLevel1[i+1] < -80) {
+    objectPosLevel1[i+1] = objectPosLevel1[i+1]+1;
+  }
+
 }
+
+
 
 // 0 2 4 6
 
