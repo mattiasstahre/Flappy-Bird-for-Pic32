@@ -15,6 +15,8 @@
 #include "mipslab.h"  /* Declatations for these labs */
 #include <math.h>
 #include <stdio.h>
+#define   TMR2PERIOD ((80000000 / 256) / 25 )  // = 31250 < 65 536 (=2^16)
+
 
 // test
 
@@ -64,6 +66,8 @@ volatile int* initPORTE = (volatile int*) 0xbf886110;
 /* Interrupt Service Routine */
 void user_isr( void )
 {
+  IFSCLR(0) = 0x100;    // Nollställ interuptflaggan!
+  InteruptFlag40ms = 1;
   return;
 }
 
@@ -83,6 +87,42 @@ volatile int* initTRISE = (volatile int*) 0xbf886100;
 //Initiera TRISE så att det är input.
 TRISD = 0xfe0;
 
+
+// Initiera timer 2 för timeouts 100ms Är en typ B timer
+
+T2CON = 0x70;          // 0111 0000 Vi sätter bit 6:4 till 111 prescale 1:256
+                      // set prescaler at 1:1, internal clock source
+TMR2 = 0x0;           // Clear timer register
+PR2 = TMR2PERIOD;         // Load period register
+
+T2CONSET = 0x8000;         // Start timer
+
+
+
+  // Slår på interupts för timer 2.
+  // LÄS PÅ OM IPC OCH IEC!!!!!!!
+  // Använder pekare.
+
+  int *IEC = 0xbf881060;
+  int *IPC2 = 0xbf8810b0;
+
+
+
+  *IEC = 0x100;     //Vi sätter bit #9 (index 8) se bild sid 90.
+  // Interupt Priority Control
+  // http://ww1.microchip.com/downloads/en/DeviceDoc/61143H.pdf Sid 90.
+  // Bitar 4:2 sätter priotitet 0-7 där 0-3 är Subpriority.
+
+
+  *IPC2 = *IPC2 | 0x10;   //Vi sätter prioriteret 4 genom att endast bit #5 (index 4)
+
+/*
+  IPC(2) = IPC(2) | 0x10;
+  // set bit no 8 to enable interupt
+  IEC(0) = 0x100;
+  // calling interupt from labwork.S
+*/
+  enable_interrupt();
 
 
   return;
@@ -167,7 +207,7 @@ display_image(0, icon);
   //display_string( 3, textstring );
   //display_update();
   //tick( &mytime );
-
+/*
 
                             //Game speed: Tryck på en switch för att ändra delayen --> ändra hastigheten
 
@@ -191,6 +231,7 @@ display_image(0, icon);
   {
     delay(30);
   }
+  */
 
 //  time2string( textstring, mytime );  // mytime är hex t ex 0x5957
 

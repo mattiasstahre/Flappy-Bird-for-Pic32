@@ -15,6 +15,7 @@
 .global printDing
 .global finalend
 .global randomAsm
+.global enable_interrupt
 .data
 .text
 
@@ -246,3 +247,10 @@ finalend:
   move	$v0, $a0	# save the lower 32-bits of time
 
   jr $ra
+
+
+
+  enable_interrupt:
+          ei
+          jr    $ra
+          nop
