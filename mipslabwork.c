@@ -25,6 +25,8 @@ char textstring[] = "text, more text, and even more text!";
 volatile int* initPORTE = (volatile int*) 0xbf886110;
 
 
+// make install TTYDEV=/dev/cu.usbserial-AJV9JY30
+
 /* Interrupt Service Routine */
 void user_isr( void )
 {

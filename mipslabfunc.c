@@ -378,8 +378,27 @@ void markPixel (int x, int y){																									// By Mattias
 			}
 		}
 
+		if(y==0){
+			int write = ~1;
+			icon[x] = icon[x] & write;
+			}
+
+			else {
+
+				int k = 1;
+				int l;
+
+				for(l=1; l<8; l++){
+					k *= 2;
+					if(y==l){
+							int write = ~k;
+							icon[x] = icon[x] & write;
+					}
+				}
+			}
 
 
+			/*
 
 				if(y==0){
 					int write = ~1;
@@ -421,7 +440,7 @@ void markPixel (int x, int y){																									// By Mattias
 					icon[x] = icon[x] & write;
 					}
 
-
+*/
 			}
 
 
@@ -446,6 +465,38 @@ if(x<129 && y<64){
 		x = x +384;
 	}
 
+
+
+	if(y==0){
+		int write = ~1;
+		if ((~(icon[x] | write)) != 0){
+			gameState = 1;
+		}
+		icon[x] = icon[x] & write;
+		}
+
+
+		else {
+
+			int k = 1;
+			int l;
+
+			for(l=1; l<8; l++){
+				k *= 2;
+				if(y==l){
+						int write = ~k;
+							if ((~(icon[x] | write)) != 0){
+							gameState = 1;
+							}
+						icon[x] = icon[x] & write;
+				}
+			}
+		}
+	}
+}
+
+
+/*
 			if(y==0){
 				int write = ~1;
 				if ((~(icon[x] | write)) != 0){
@@ -510,9 +561,13 @@ if(x<129 && y<64){
 				icon[x] = icon[x] & write;
 				}
 
-		}
+}
+
+
 
 	}
+
+	*/
 
 void clearScreenMemory (void){
 	int i = 0;
