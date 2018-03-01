@@ -396,52 +396,7 @@ void markPixel (int x, int y){																									// By Mattias
 					}
 				}
 			}
-
-
-			/*
-
-				if(y==0){
-					int write = ~1;
-					icon[x] = icon[x] & write;
-					}
-
-					if(y==1){
-					int write = ~2;
-					icon[x] = icon[x] & write;
-					}
-
-				if(y==2){
-					int write = ~4;
-					icon[x] = icon[x] & write;
-					}
-
-				if(y==3){
-					int write = ~8;
-					icon[x] = icon[x] & write;
-					}
-
-				if(y==4){
-					int write = ~16;
-					icon[x] = icon[x] & write;
-					}
-
-				if(y==5){
-					int write = ~32;
-					icon[x] = icon[x] & write;
-					}
-
-				if(y==6){
-					int write = ~64;
-					icon[x] = icon[x] & write;
-					}
-
-				if(y==7){
-					int write = ~128;
-					icon[x] = icon[x] & write;
-					}
-
-*/
-			}
+}
 
 
 
@@ -465,8 +420,6 @@ if(x<129 && y<64){
 		x = x +384;
 	}
 
-
-
 	if(y==0){
 		int write = ~1;
 		if ((~(icon[x] | write)) != 0){
@@ -474,7 +427,6 @@ if(x<129 && y<64){
 		}
 		icon[x] = icon[x] & write;
 		}
-
 
 		else {
 
@@ -495,79 +447,6 @@ if(x<129 && y<64){
 	}
 }
 
-
-/*
-			if(y==0){
-				int write = ~1;
-				if ((~(icon[x] | write)) != 0){
-					gameState = 1;
-				}
-				icon[x] = icon[x] & write;
-				}
-
-			if(y==1){
-				int write = ~2;
-				if ((~(icon[x] | write)) != 0){
-					gameState = 1;
-				}
-				icon[x] = icon[x] & write;
-				}
-
-			if(y==2){
-				int write = ~4;
-				if ((~(icon[x] | write)) != 0){
-					gameState = 1;
-				}
-				icon[x] = icon[x] & write;
-				}
-
-			if(y==3){
-				int write = ~8;
-				if ((~(icon[x] | write)) != 0){
-					gameState = 1;
-				}
-				icon[x] = icon[x] & write;
-				}
-
-			if(y==4){
-				int write = ~16;
-				if ((~(icon[x] | write)) != 0){
-					gameState = 1;
-				}
-				icon[x] = icon[x] & write;
-				}
-
-			if(y==5){
-				int write = ~32;
-				if ((~(icon[x] | write)) != 0){
-					gameState = 1;
-				}
-				icon[x] = icon[x] & write;
-				}
-
-			if(y==6){
-				int write = ~64;
-				if ((~(icon[x] | write)) != 0){
-					gameState = 1;
-				}
-				icon[x] = icon[x] & write;
-				}
-
-			if(y==7){
-				int write = ~128;
-				if ((~(icon[x] | write)) != 0){
-					gameState = 1;
-				}
-				icon[x] = icon[x] & write;
-				}
-
-}
-
-
-
-	}
-
-	*/
 
 void clearScreenMemory (void){
 	int i = 0;
