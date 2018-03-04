@@ -349,6 +349,7 @@ void markPixel (int x, int y){																									// By Mattias
 		y=-1;
 	}
 
+
 	if(x>127 | y > 32){
 		x= -1;
 		y=-1;
