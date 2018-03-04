@@ -342,7 +342,7 @@ void display_init(void) {
 	spi_send_recv(0xAF);
 }
 
-void markPixel (int x, int y){																									// By Mattias
+void markPixel (int x, int y){																// By Mattias
 
 	if(y<0 | x<0){
 		x= -1;
@@ -401,7 +401,7 @@ void markPixel (int x, int y){																									// By Mattias
 
 
 
-void markTaco (int x, int y){																										// By Mattias
+void markTaco (int x, int y){																	// By Mattias
 
 if(x<129 && y<64){
 
@@ -457,7 +457,7 @@ void clearScreenMemory (void){
 }
 
 
-void drawObjectTube(int x, int y){																							// By Mattias
+void drawObjectTube(int x, int y){															// By Mattias
 
 for(i = 0; i < 60; i++){
 		for(j = 0; j < 5 ; j++){
@@ -469,7 +469,7 @@ for(i = 0; i < 60; i++){
 }
 
 
-void drawTaco(int TacoX, int TacoY){																						// By Mattias
+void drawTaco(int TacoX, int TacoY){														// By Mattias
 	  for (i = -1; i <= 1; i++){
 	      markTaco(TacoX+i, TacoY-2);
 	  }
@@ -486,7 +486,7 @@ void drawTaco(int TacoX, int TacoY){																						// By Mattias
 	}
 
 
-                                                                                  //START: Denna del kodades endast av Gustaf
+                                                              //START: Denna del kodades endast av Gustaf
 void drawGameOver(int TacoX, int TacoY){
 
 for(i = 6; i <11 ; i++){
@@ -507,7 +507,7 @@ for(i = 6; i <11 ; i++){
 }
 
 }
-                                                                                  //SLUT: Denna del kodades endast av Gustaf
+                                                            //SLUT: Denna del kodades endast av Gustaf
 
 
 void drawTopLine(void){
@@ -572,7 +572,7 @@ void display_string(int line, char *s) {
 			textbuffer[line][i] = ' ';
 }
 
-void display_score(int line, char s[4][20]) {																		// By Mattias
+void display_score(int line, char s[4][20]) {										// By Mattias
 	int i;
 	int k = 1;
 
